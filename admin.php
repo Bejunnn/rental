@@ -7,16 +7,16 @@ session_start();
 
 if (isset($_SESSION['sebagai'])) {
   if ($_SESSION['sebagai'] == 'karywan') {
-    header("Location: login/karyawan.php");
+    header("Location: karyawan/index.php");
     exit;
   } elseif ($_SESSION['sebagai'] == 'ga') {
-    header("Location: login/ga.php");
+    header("Location: ga/index.php");
     exit;
   } elseif ($_SESSION['sebagai'] == 'admin_hr') {
-    header("Location: login/admin_hr.php");
+    header("Location: admin_hr/index.php");
     exit;
   } elseif ($_SESSION['sebagai'] == 'hr') {
-    header("Location: login/hr.php");
+    header("Location: hr/index.php");
     exit;
   }
 }
@@ -34,17 +34,17 @@ if (isset($_POST['btn-login'])) {
       $_SESSION['sebagai'] = $rows['sebagai'];
       $_SESSION['nama_lengkap'] = $rows['nama_lengkap'];
       // $_SESSION['id'] = $rows['password'];
-      return header("Location: login/karyawan.php");
+      return header("Location: karyawan/index.php");
 
       if (isset($_SESSION['alamat_email'])) {
-        header("Location: login/karyawan.php");
+        header("Location: karyawan/index.php");
         exit;
       }
     } elseif ($rows['sebagai'] == 'ga') {
       $_SESSION['sebagai'] = $rows['sebagai'];
       $_SESSION['nama_lengkap'] = $rows['nama_lengkap'];
       // $_SESSION['id'] = $rows['password'];
-      return header("Location: login/ga.php");
+      return header("Location: ga/index.php");
 
 
       if (isset($_SESSION['alamat_email'])) {
@@ -55,7 +55,7 @@ if (isset($_POST['btn-login'])) {
       $_SESSION['sebagai'] = $rows['sebagai'];
       $_SESSION['nama_lengkap'] = $rows['nama_lengkap'];
       // $_SESSION['id'] = $rows['password'];
-      return header("Location: login/admin_hr.php");
+      return header("Location: admin_hr/index.php");
 
 
       if (isset($_SESSION['alamat_email'])) {
@@ -66,7 +66,7 @@ if (isset($_POST['btn-login'])) {
       $_SESSION['sebagai'] = $rows['sebagai'];
       $_SESSION['nama_lengkap'] = $rows['nama_lengkap'];
       // $_SESSION['id'] = $rows['password'];
-      return header("Location: login/hr.php");
+      return header("Location: hr/index.php");
 
 
       if (isset($_SESSION['alamat_email'])) {

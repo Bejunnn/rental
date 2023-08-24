@@ -7,7 +7,7 @@ session_start();
 
 if (isset($_SESSION['sebagai'])) {
   if ($_SESSION['sebagai'] == 'karywan') {
-    header("Location: login/karyawan.php");
+    header("Location: karyawan/index.php");
   }
 }
 
@@ -24,10 +24,10 @@ if (isset($_POST['btn-login'])) {
       $_SESSION['sebagai'] = $rows['sebagai'];
       $_SESSION['nama_lengkap'] = $rows['nama_lengkap'];
       // $_SESSION['id'] = $rows['password'];
-      return header("Location: login/karyawan.php");
+      return header("Location: karyawan/index.php");
 
       if (isset($_SESSION['alamat_email'])) {
-        header("Location: login/karyawan.php");
+        header("Location: karyawan/index.php");
         exit;
       }
     }

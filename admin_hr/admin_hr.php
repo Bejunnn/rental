@@ -1,21 +1,21 @@
 <?php
-include('../koneksi.php');
-$result = mysqli_query($conn, "SELECT * FROM login");
-$rows = [];
-while ($row = mysqli_fetch_assoc($result)) {
-  $rows[] = $row;
-}
-
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../index.php");
+  header("Location: ../admin.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
-  if ($_SESSION['sebagai'] == 'user') {
-    header('Location: ./user.php');
+    if ($_SESSION['sebagai'] == 'ga') {
+      header('Location: ga.php');
+      exit;
+    } elseif ($_SESSION['sebagai'] == 'karyawan') {
+      header("Location: karyawan.php");
+      exit;
+    } elseif ($_SESSION['sebagai'] == 'hr') {
+      header("Location: hr.php");
+      exit;
+    }
   }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ if (isset($_SESSION['sebagai'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Kelola Admin/User</title>
+    <title>Homepage</title>
 
     <!-- Custom fonts for this template-->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,6 @@ if (isset($_SESSION['sebagai'])) {
 
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -51,7 +50,7 @@ if (isset($_SESSION['sebagai'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <div>
                <img src="../assets/img/madep.png" alt="logo" width="45px">
                 </div>
@@ -62,8 +61,8 @@ if (isset($_SESSION['sebagai'])) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="../login/admin.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="admin.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -74,20 +73,19 @@ if (isset($_SESSION['sebagai'])) {
         
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-               <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                    aria-controls="collapseTwo">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pages</span>
                 </a>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item" href="../siswa/index.php">Kelola Data Siswa</a>
-                        <a class="collapse-item active" href="index.php">Kelola Admin/User</a>
+                        <h6 class="collapse-header">Kelola Data</h6>
+                        <a class="collapse-item" href="../siswa/admin.php">Kelola Data Siswa</a>
+                        <a class="collapse-item" href="../input/admin.php">Kelola Admin/User</a>
                         <h6 class="collapse-header">Pembayaran</h6>
-                        <a class="collapse-item" href="../transaksi/index.php">Transaksi</a>
+                        <a class="collapse-item" href="../transaksi/admin.php">Transaksi</a>
                         <a class="collapse-item " href="../transaksi/tunggakan.php">Tunggakan</a>
                         <a class="collapse-item" href="../transaksi/laporan.php">Laporan</a>
                     </div>
@@ -98,9 +96,8 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-
             <li class="nav-item">
-                <a class="nav-link" href="../login/logout.php">
+                <a class="nav-link" href="../logout.php">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray"></i>
                     <span>Logout</span></a>
             </li>
@@ -136,14 +133,14 @@ if (isset($_SESSION['sebagai'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama']; ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama_lengkap']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a href="../login/logout.php" class="dropdown-item" >
+                                <a href="../logout.php" class="dropdown-item" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -153,68 +150,42 @@ if (isset($_SESSION['sebagai'])) {
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->     
+                <!-- End of Topbar -->            
+
+                
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    
+                    <br>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         
                     </div>
+                    <!-- Begin Page Content -->
+                <div class="container-fluid">
 
                     <!-- DataTales Example -->
-                    <div class="d-sm-flex justify-content-between align-items-center">
-                                    <br>
-                                    <a href="tambah.php" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        <span class="text">Tambah Admin/User</span>
-                                    </a>                          
-                            </div>
+                    
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Kelola Admin/User</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Dashboard</h6>
                         </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                <th>FOTO</th>
-                                                <th>USERNAME</th>
-                                                <th>NAMA</th>
-                                                <th>SEBAGAI</th>
-                                                <th>ACTION</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($rows as $data) { 
-                                                  ?>
-                                                <tr>
-                                                <td>
-                                                    <img src="../assets/foto/<?= $data['foto']; ?>" alt="" srcset="" width="80"  />
-                                                </td>
-                                                <td><?= $data['username']; ?></td>
-                                                <td><?= $data['nama']; ?></td>
-                                                <td><?= $data['sebagai']; ?></td>
-                                                <td>
-                                                    <a title="hapus" class="btn btn-danger" href="hapus.php?id=<?= $data['id']; ?>"" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
-                                                    <a title="edit" class="btn btn-primary" href="edit.php?id=<?= $data['id']; ?>"><i class="fas fa-edit"></i></a>
-                                                </td>
-                                                </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                            </table>
-                                        </div>
-                                </div>
+                        <div class="card-body">
+                            <div >
+                            Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai <?= $_SESSION['sebagai']; ?> di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online.
+                            </div>
+                        </div>
+
+                </div>
+
+                </div>
 
             </div>
             <!-- End of Main Content -->
 
+
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -223,6 +194,7 @@ if (isset($_SESSION['sebagai'])) {
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -239,14 +211,6 @@ if (isset($_SESSION['sebagai'])) {
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../assets/js/demo/datatables-demo.js"></script>
-
 
 </body>
 

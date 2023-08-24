@@ -11,8 +11,8 @@ if (isset($_SESSION['sebagai'])) {
     } elseif ($_SESSION['sebagai'] == 'karyawan') {
       header("Location: karyawan.php");
       exit;
-    } elseif ($_SESSION['sebagai'] == 'hr') {
-      header("Location: hr.php");
+    } elseif ($_SESSION['sebagai'] == 'admin_hr') {
+      header("Location: admin_hr.php");
       exit;
     }
   }
@@ -97,7 +97,7 @@ if (isset($_SESSION['sebagai'])) {
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item">
-                <a class="nav-link" href="logout.php">
+                <a class="nav-link" href="../logout.php">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray"></i>
                     <span>Logout</span></a>
             </li>
@@ -140,7 +140,7 @@ if (isset($_SESSION['sebagai'])) {
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a href="logout.php" class="dropdown-item" >
+                                <a href="../logout.php" class="dropdown-item" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
