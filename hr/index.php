@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../admin.php");
+  header("Location: ../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
@@ -82,10 +82,10 @@ if (isset($_SESSION['sebagai'])) {
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item" href="../siswa/admin.php">Kelola Data Siswa</a>
-                        <a class="collapse-item" href="../input/admin.php">Kelola Admin/User</a>
+                        <a class="collapse-item" href="../siswa/index.php">Kelola Data Siswa</a>
+                        <a class="collapse-item" href="../input/index.php">Kelola Admin/User</a>
                         <h6 class="collapse-header">Pembayaran</h6>
-                        <a class="collapse-item" href="../transaksi/admin.php">Transaksi</a>
+                        <a class="collapse-item" href="../transaksi/index.php">Transaksi</a>
                         <a class="collapse-item " href="../transaksi/tunggakan.php">Tunggakan</a>
                         <a class="collapse-item" href="../transaksi/laporan.php">Laporan</a>
                     </div>

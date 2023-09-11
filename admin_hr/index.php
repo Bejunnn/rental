@@ -1,15 +1,15 @@
 <?php
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../admin.php");
+  header("Location: ../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'ga') {
-      header('Location: ga.php');
+    if ($_SESSION['sebagai'] == 'karyawan') {
+      header('Location: karyawan.php');
       exit;
-    } elseif ($_SESSION['sebagai'] == 'karyawan') {
-      header("Location: karyawan.php");
+    } elseif ($_SESSION['sebagai'] == 'ga') {
+      header("Location: ga.php");
       exit;
     } elseif ($_SESSION['sebagai'] == 'hr') {
       header("Location: hr.php");
@@ -82,12 +82,7 @@ if (isset($_SESSION['sebagai'])) {
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item" href="../siswa/admin.php">Kelola Data Siswa</a>
-                        <a class="collapse-item" href="../input/admin.php">Kelola Admin/User</a>
-                        <h6 class="collapse-header">Pembayaran</h6>
-                        <a class="collapse-item" href="../transaksi/admin.php">Transaksi</a>
-                        <a class="collapse-item " href="../transaksi/tunggakan.php">Tunggakan</a>
-                        <a class="collapse-item" href="../transaksi/laporan.php">Laporan</a>
+                        <a class="collapse-item" href="mobil/index.php">Kelola Data Mobil</a>
                     </div>
                 </div>
             </li>
@@ -97,7 +92,7 @@ if (isset($_SESSION['sebagai'])) {
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item">
-                <a class="nav-link" href="../logout.php">
+                <a class="nav-link" href="logout.php">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray"></i>
                     <span>Logout</span></a>
             </li>
@@ -140,7 +135,7 @@ if (isset($_SESSION['sebagai'])) {
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a href="../logout.php" class="dropdown-item" >
+                                <a href="logout.php" class="dropdown-item" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -172,7 +167,7 @@ if (isset($_SESSION['sebagai'])) {
                         </div>
                         <div class="card-body">
                             <div >
-                            Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai <?= $_SESSION['sebagai']; ?> di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online.
+                            Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai Admin HR di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online.
                             </div>
                         </div>
 
