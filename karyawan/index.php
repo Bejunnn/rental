@@ -82,12 +82,7 @@ if (isset($_SESSION['sebagai'])) {
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item" href="../siswa/index.php">Kelola Data Siswa</a>
-                        <a class="collapse-item" href="../input/index.php">Kelola Admin/User</a>
-                        <h6 class="collapse-header">Pembayaran</h6>
-                        <a class="collapse-item" href="../transaksi/index.php">Transaksi</a>
-                        <a class="collapse-item " href="../transaksi/tunggakan.php">Tunggakan</a>
-                        <a class="collapse-item" href="../transaksi/laporan.php">Laporan</a>
+                        <a class="collapse-item" href="mobil/index.php">Booking</a>
                     </div>
                 </div>
             </li>

@@ -243,7 +243,7 @@ if (isset($_SESSION['sebagai'])) {
                                     <td>
                                         <a href="" class="btn btn-sm btn-info"><i class="fa fa-pen"></i> Ubah</a>
                                         <a href="" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Detail</a>
-                                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id= $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
+                                       <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
                                     </td>
                                 </tr>
                                 <?php

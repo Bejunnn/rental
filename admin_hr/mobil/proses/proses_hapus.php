@@ -2,7 +2,10 @@
 include 'koneksi.php';
 $id = $_GET['id'];
 
-$result = mysqli_query($koneksi, "DELETE FROM mobil WHERE id = $id");
+// Properly escape the value to prevent SQL injection
+$id = mysqli_real_escape_string($koneksi, $id);
+
+$result = mysqli_query($koneksi, "DELETE FROM mobil WHERE id = '$id'");
 $cek = mysqli_affected_rows($koneksi);
 
 if ($cek > 0) {
