@@ -1,6 +1,6 @@
 <?php
 include('koneksi.php');
-$result = mysqli_query($koneksi, "SELECT * FROM permintaan");
+$result = mysqli_query($koneksi, "SELECT * FROM mobil");
 $rows = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
@@ -170,39 +170,44 @@ if (isset($_SESSION['sebagai'])) {
                                 <form method="POST" action="../proses/proses_tambah.php" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <label for="no_polisi">No Polisi</label>
-                                                <select name="no_polisi" id="no_polisi" onchange="detail()" class="form-control">
-                                                    <option value="">pilih no polisi</option>
+                                                <label for="nama_mobil">Nama Mobil</label>
+                                                <select name="nama_mobil" id="nama_mobil" onchange="detail()" class="form-control">
+                                                    <option value="">Pilih Nama Mobil</option>
                                                     <?php
                                                     include "koneksi.php";
                                                     $query = mysqli_query($koneksi, "SELECT * FROM mobil");
                                                     while ($data = mysqli_fetch_array($query)) {
                                                     ?>
-                                                        <option value="<?php echo $data['no_polisi']; ?>"><?php echo $data['no_polisi']; ?></option>
+                                                        <option value="<?php echo $data['nama_mobil']; ?>"><?php echo $data['nama_mobil']; ?></option>
                                                     <?php
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="merk">Nama Merk</label>
-                                                <input type="text" name="merk" id="merk" required="required" placeholder="ketik" autocomplete="off" class="form-control">
+                                                <label for="nama_pemesan">Nama Pemesan</label>
+                                                <input type="text" name="nama_pemesan" id="nama_pemesan" required="required" placeholder="<?= $_SESSION['nama_engkap']; ?>" autocomplete="off" class="form-control" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kota_tujuan">Kota Tujuan</label>
+                                                <input type="text" name="kota_tujuan" id="kota_tujuan" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-6">
-                                                    <label for="nama">Nama Mobil</label>
-                                                    <input type="text" name="nama" id="nama" required="required" placeholder="ketik" autocomplete="off" class="form-control">
+                                                    <label for="no_polisi">No Polisi</label>
+                                                    <input type="text" name="no_polisi" id="no_polisi" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
                                                 </div>
+                                                
                                                 <div class="form-group col-6">
                                                     <label for="jumlah_kursi">Jumlah Kursi</label>
-                                                    <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
+                                                    <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-6">
                                                 <label for="tahun_beli">Tahun Beli</label>
-                                                <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control">
+                                                <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -240,7 +245,6 @@ if (isset($_SESSION['sebagai'])) {
                                             <tr>
                                                 <th>No</th>
                                                 <th>Mobil</th>
-                                                <th>Merk</th>
                                                 <th>Kursi</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -253,8 +257,7 @@ if (isset($_SESSION['sebagai'])) {
                                                 <tr>
 
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $data['nama']; ?></td>
-                                                    <td><?= $data['merk']; ?></td>
+                                                    <td><?= $data['nama_mobil']; ?></td>
                                                     <td><?= $data['jumlah_kursi']; ?></td>
                                                     <td>
                                                         <a href="" class="btn btn-sm btn-info"><i class="fa fa-pen"></i> Ubah</a>
@@ -315,17 +318,16 @@ if (isset($_SESSION['sebagai'])) {
 </html>
 <script>
     function detail() {
-        var id = $("#no_polisi").val();
+        var nama_mobil = $("#nama_mobil").val();
         $.ajax({
             url: "data.php",
             method: "POST",
             data: {
-                id: id
+                nama_mobil:nama_mobil
             },
             dataType: "json",
             success: function(data) { // Corrected "success" spelling
-                $('#merk').val(data.merk);
-                $('#nama').val(data.nama);
+                $('#no_polisi').val(data.no_polisi);
                 $('#jumlah_kursi').val(data.jumlah_kursi);
                 $('#tahun_beli').val(data.tahun_beli);
             }

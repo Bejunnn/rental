@@ -26,7 +26,7 @@ if (isset($_POST['btn-login'])) {
   $password = $_POST['password'];
 
   $sql = "SELECT * FROM login WHERE alamat_email='$alamat_email' and password='$password'";
-  $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($koneksi, $sql);
   if (mysqli_num_rows($result) === 1) {
     $_SESSION['alamat_email'] = true;
     $rows = mysqli_fetch_assoc($result);

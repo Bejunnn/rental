@@ -3,8 +3,7 @@
 include 'koneksi.php';
 
 	// membuat variabel untuk menampung data dari form
-  $merk = $_POST['merk'];
-  $nama = $_POST['nama'];
+  $nama_mobil = $_POST['nama_mobil'];
   $no_polisi = $_POST['no_polisi'];
   $jumlah_kursi = $_POST['jumlah_kursi'];
   $tahun_beli = $_POST['tahun_beli'];
@@ -22,7 +21,7 @@ if($gambar != "") {
         if(in_array($ekstensi, $ekstensi_diperbolehkan) === true)  {     
                 move_uploaded_file($file_tmp, '../../../assets/foto/'.$nama_gambar_baru); //memindah file foto ke folder foto
                   // jalankan query INSERT untuk menambah data ke database pastikan sesuai urutan (id tidak perlu karena dibikin otomatis)
-                  $query = "INSERT INTO mobil (merk, nama, no_polisi, jumlah_kursi, tahun_beli, gambar) VALUES ('$merk', '$nama','$no_polisi','$jumlah_kursi','$tahun_beli', '$nama_gambar_baru')";
+                  $query = "INSERT INTO mobil ( nama_mobil, no_polisi, jumlah_kursi, tahun_beli, gambar) VALUES ( '$nama_mobil','$no_polisi','$jumlah_kursi','$tahun_beli', '$nama_gambar_baru')";
                   $result = mysqli_query($koneksi, $query);
                   // periska query apakah ada error
                   if(!$result){
@@ -39,7 +38,7 @@ if($gambar != "") {
                 echo "<script>alert('Ekstensi foto yang boleh hanya jpg,jpeg atau png.');window.location='../tambah.php';</script>";
             }
 } else {
-   $query = "INSERT INTO mobil (merk, nama, no_polisi, jumlah_kursi, tahun_beli, gambar) VALUES ('$merk', '$nama','$no_polisi','$jumlah_kursi','$tahun_beli', null)";
+   $query = "INSERT INTO mobil ( nama_mobil, no_polisi, jumlah_kursi, tahun_beli, gambar) VALUES ( '$nama_mobil','$no_polisi','$jumlah_kursi','$tahun_beli', null)";
                   $result = mysqli_query($koneksi, $query);
                   // periska query apakah ada error
                   if(!$result){

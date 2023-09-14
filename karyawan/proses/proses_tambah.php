@@ -3,17 +3,18 @@
 include '../mobil/koneksi.php';
 
 // membuat variabel untuk menampung data dari form
-$merk = $_POST['merk'];
-$nama = $_POST['nama'];
 $no_polisi = $_POST['no_polisi'];
+$nama_pemesan = $_POST['nama_pemesan'];
+$nama_mobil = $_POST['nama_mobil'];
+$kota_tujuan = $_POST['kota_tujuan'];
 $tanggal_pinjam = $_POST['tanggal_pinjam'];
 $tanggal_kembali = $_POST['tanggal_kembali'];
 
 // cek dulu jika ada data yang harus dimasukkan (misalnya, jika 'no_polisi' tidak kosong)
 if (!empty($nama)) {
     // Insert data into the 'permintaan' table
-    $query = "INSERT INTO permintaan (merk, nama, no_polisi, tanggal_pinjam, tanggal_kembali) 
-              VALUES ('$merk', '$nama', '$no_polisi', '$tanggal_pinjam', '$tanggal_kembali')";
+    $query = "INSERT INTO permintaan (no_polisi, nama_pemesan, nama_mobil,kota_tujuan ,tanggal_pinjam, tanggal_kembali) 
+              VALUES ('$no_polisi','$nama_pemesan', '$nama_mobil', '$kota_tujuan','$tanggal_pinjam', '$tanggal_kembali')";
     
     $result = mysqli_query($koneksi, $query);
 

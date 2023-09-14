@@ -1,6 +1,6 @@
 <?php
 include('../../koneksi.php');
-$result = mysqli_query($conn, "SELECT * FROM mobil");
+$result = mysqli_query($koneksi, "SELECT * FROM mobil");
 $rows = [];
 while ($row = mysqli_fetch_assoc($result)) {
   $rows[] = $row;
@@ -176,12 +176,8 @@ if (isset($_SESSION['sebagai'])) {
                 <div class="card-body">
                     <form method="POST" action="proses/proses_tambah.php" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="merk">Nama Merk</label>
-                            <input type="text" name="merk" id="merk" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Nama Mobil</label>
-                            <input type="text" name="nama" id="nama" required="required" placeholder="ketik" autocomplete="off" class="form-control">
+                            <label for="nama_mobil">Nama Mobil</label>
+                            <input type="text" name="nama_mobil" id="nama_mobil" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
@@ -224,7 +220,6 @@ if (isset($_SESSION['sebagai'])) {
                             <tr>
                                 <th>No</th>
                                 <th>Mobil</th>
-                                <th>Merk</th>
                                 <th>Kursi</th>
                                 <th>Aksi</th>
                             </tr>
@@ -237,8 +232,7 @@ if (isset($_SESSION['sebagai'])) {
                                 <tr>
                                     
                                     <td><?= $no++ ?></td>
-                                    <td><?= $data['nama']; ?></td>
-                                    <td><?= $data['merk']; ?></td>
+                                    <td><?= $data['nama_mobil']; ?></td>
                                     <td><?= $data['jumlah_kursi']; ?></td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-info"><i class="fa fa-pen"></i> Ubah</a>
