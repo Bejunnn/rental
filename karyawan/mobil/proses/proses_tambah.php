@@ -1,6 +1,6 @@
 <?php
 // memanggil file koneksi.php untuk melakukan koneksi database
-include '../mobil/koneksi.php';
+include '../../../koneksi.php';
 
 // membuat variabel untuk menampung data dari form
 $no_polisi = $_POST['no_polisi'];
