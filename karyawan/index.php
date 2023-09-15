@@ -82,7 +82,7 @@ if (isset($_SESSION['sebagai'])) {
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item" href="mobil/index.php">Booking</a>
+                        <a class="collapse-item" href="booking/index.php">Booking</a>
                     </div>
                 </div>
             </li>

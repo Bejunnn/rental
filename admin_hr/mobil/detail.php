@@ -1,28 +1,30 @@
 <?php
-include('../../koneksi.php');
-$result = mysqli_query($koneksi, "SELECT * FROM mobil");
-$rows = [];
-while ($row = mysqli_fetch_assoc($result)) {
-  $rows[] = $row;
-}
+// memanggil file koneksi.php untuk membuat koneksi
+include '../../koneksi.php';
 
-session_start();
-if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../index.php");
-}
+// mengecek apakah di url ada nilai GET id
+if (isset($_GET['id'])) {
+  // ambil nilai id dari url dan disimpan dalam variabel $id
+  $id = ($_GET["id"]);
 
-if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'karyawan') {
-      header('Location: karyawan.php');
-      exit;
-    } elseif ($_SESSION['sebagai'] == 'ga') {
-      header("Location: ga.php");
-      exit;
-    } elseif ($_SESSION['sebagai'] == 'hr') {
-      header("Location: hr.php");
-      exit;
-    }
+  // menampilkan data dari database yang mempunyai id=$id
+  $query = "SELECT * FROM Mobil WHERE id='$id'";
+  $result = mysqli_query($koneksi, $query);
+  // jika data gagal diambil maka akan tampil error berikut
+  if (!$result) {
+    die("Query Error: " . mysqli_errno($koneksi) .
+      " - " . mysqli_error($koneksi));
   }
+  // mengambil data dari database
+  $data = mysqli_fetch_assoc($result);
+  // apabila data tidak ada pada database maka akan dijalankan perintah ini
+  if (!count($data)) {
+    echo "<script>alert('Data tidak ditemukan pada database');window.location='index.php';</script>";
+  }
+} else {
+  // apabila tidak ada data GET id pada akan di redirect ke index.php
+  echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,96 +162,53 @@ if (isset($_SESSION['sebagai'])) {
     <div class="container-fluid">
 
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Mobil</h1>
-    </div>
-
-    <!-- Content Row -->
-
     <div class="row">
-
-        <div class="col-sm-4">
-            <div class="card shadow">
-                <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="proses/proses_tambah.php" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="nama_mobil">Nama Mobil</label>
-                            <input type="text" name="nama_mobil" id="nama_mobil" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="no_polisi">No Polisi</label>
-                                <input type="text" name="no_polisi" id="no_polisi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="jumlah_kursi">Jumlah Kursi</label>
-                                <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">  
-                            <div class="form-group col-6">
-                                <label for="tahun_beli">Tahun Beli</label>
-                                <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="gambar">Gambar Mobil</label>
-                                <input type="file" name="gambar" id="gambar" required="required" placeholder="ketik" autocomplete="off" class="form-control-file">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-primary" name="tambah"><i class="fa fa-plus"></i> Tambah</button>
-                            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Batal</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div class="col-sm-8">
             <div class="card shadow">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Mobil</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Detail Mobil - <?php echo $data['nama_mobil']; ?></h6>
                 </div>
                 <div class="card-body">
-
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Mobil</th>
-                                <th>Kursi</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        $no = '1';
-                        foreach ($rows as $data) { 
-                        ?>
-                        <tbody>            
+                    <div class="row">
+                        <div class="col-md-6">
+                        <img src="../../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
                                 <tr>
-                                    
-                                    <td><?= $no++ ?></td>
-                                    <td><?= $data['nama_mobil']; ?></td>
-                                    <td><?= $data['jumlah_kursi']; ?></td>
-                                    <td>
-                                        <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>
-                                        <a title="detail" class="btn btn-info" href="detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>
-                                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
-                                    </td>
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['nama_mobil']; ?></b></td>
                                 </tr>
-                                <?php
-                                }
-                                ?>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Nomer Polisi</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['no_polisi']; ?></b></td>
+                                </tr>
+                                <tr>
+                                    <td>Jumlah Kursi</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['jumlah_kursi']; ?> Kursi</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Tahun Beli</td>
+                                    <td>:</td>
+                                    <td><b>Tahun <?php echo $data['tahun_beli']; ?></b></td>
+                                </tr>
+                            </table>	
+                        </div>				
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <a href="edit.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-info"><i class="fa fa-pen"></i> Ubah</a>
+                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
+                        <a href="index.php" class="btn btn-sm btn-secondary"><i class="fa fa-reply"></i> Kembali</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     </div>
     <!-- /.container-fluid -->
 

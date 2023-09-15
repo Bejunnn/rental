@@ -133,7 +133,7 @@ if (isset($_POST['btn-login'])) {
 
                         </div>
                         <button type="submit" id="login" class="btn-login" name="btn-login"  value="Submit">Masuk</button>
-                    
+                        <a href="regist.php">Registrasi</a>
                 </form>
 			     </div>
             </div>
