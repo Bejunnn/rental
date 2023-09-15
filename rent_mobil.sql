@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Agu 2023 pada 10.54
+-- Waktu pembuatan: 12 Sep 2023 pada 07.19
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -41,19 +41,53 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `nama_lengkap`, `no_telp`, `alamat_email`, `password`, `sebagai`) VALUES
-(1, 'Arjun Heriyanto', '123', 'arjun@gmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 'karyawan'),
 (2, 'angga', '234', 'angga@gmail.com', 'angga', 'ga'),
 (3, 'adhi pramana', '456', 'adhi@gmail.com', 'adhi', 'admin_hr'),
 (4, 'welen', '567', 'welen@gmail.com', 'welen', 'hr'),
-(5, 'Adit', '123', 'adit@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin_hr'),
-(6, 'sdaw', '', 'wa@gmail.com', '$2y$10$L9O.zsHwdIkAxaHQ5Ta4Per2hI6XWn5Sg74Vk1DJT5A', 'karyawan'),
-(7, 'botol', '086287678632', 'botol@gmail.com', '$2y$10$eRTSyhRURc6vHXdEfnzituybe44gQP7nYeH5BflXH/W', 'karyawan'),
-(8, 'suparmin', '0892538565', 'sup@gmail.com', '$2y$10$kidITz.wZNnsvKtP.bXV1OxTA1EjDf1HcScXF9tShw4', 'karyawan'),
-(9, 'sdaw', 'dawd', 'dawd@gmail.com', '$2y$10$kMxpDxjia6f/teN3T/dIXuwAmo39yk78cD9kfTT8IKa', 'karyawan'),
-(10, 'noval', '23455432', 'ihsan@gmail.com', '$2y$10$CCXBZ/yfHEosKbG1PUuVneXJz.MZmYoMLMxmyHBmLIU', 'karyawan'),
 (11, 'bagus', '097341837', 'bagus@gmail.com', '11111111', 'karyawan'),
 (12, 'suparmin', '097373636', 'supra@gmail.com', '88888888', 'karyawan'),
-(13, 'epi', '0873636172', 'epi@gmail.com', '99999999', 'karyawan');
+(13, 'epi', '0873636172', 'epi@gmail.com', '99999999', 'karyawan'),
+(14, 'abi', '123', 'abi@gmail.com', 'abi', 'ga');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mobil`
+--
+
+CREATE TABLE `mobil` (
+  `id` int(50) NOT NULL,
+  `merk` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `no_polisi` varchar(50) NOT NULL,
+  `jumlah_kursi` int(20) NOT NULL,
+  `tahun_beli` int(20) NOT NULL,
+  `gambar` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `permintaan`
+--
+
+CREATE TABLE `permintaan` (
+  `id` int(20) NOT NULL,
+  `merk` varchar(100) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `no_polisi` varchar(50) NOT NULL,
+  `tanggal_pinjam` date NOT NULL,
+  `tanggal_kembali` date NOT NULL,
+  `status` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `permintaan`
+--
+
+INSERT INTO `permintaan` (`id`, `merk`, `nama`, `no_polisi`, `tanggal_pinjam`, `tanggal_kembali`, `status`) VALUES
+(9, 'suzuki', 'r3', '4', '2023-09-12', '2023-09-13', 0),
+(10, 'suzuki', 'r3', '4', '2023-09-12', '2023-09-14', 0);
 
 --
 -- Indexes for dumped tables
@@ -66,6 +100,18 @@ ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `mobil`
+--
+ALTER TABLE `mobil`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `permintaan`
+--
+ALTER TABLE `permintaan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -73,7 +119,19 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT untuk tabel `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `mobil`
+--
+ALTER TABLE `mobil`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `permintaan`
+--
+ALTER TABLE `permintaan`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
