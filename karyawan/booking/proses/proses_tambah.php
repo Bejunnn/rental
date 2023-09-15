@@ -11,7 +11,7 @@ $tanggal_pinjam = $_POST['tanggal_pinjam'];
 $tanggal_kembali = $_POST['tanggal_kembali'];
 
 // cek dulu jika ada data yang harus dimasukkan (misalnya, jika 'no_polisi' tidak kosong)
-if (!empty($nama)) {
+if (!empty($nama_mobil)) {
     // Insert data into the 'permintaan' table
     $query = "INSERT INTO permintaan (no_polisi, nama_pemesan, nama_mobil,kota_tujuan ,tanggal_pinjam, tanggal_kembali) 
               VALUES ('$no_polisi','$nama_pemesan', '$nama_mobil', '$kota_tujuan','$tanggal_pinjam', '$tanggal_kembali')";
@@ -24,7 +24,7 @@ if (!empty($nama)) {
     } else {
         // tampilkan alert dan akan redirect ke halaman index.php
         // silahkan ganti index.php sesuai halaman yang akan dituju
-        echo "<script>alert('Data berhasil ditambah.'); window.location='../mobil/index.php';</script>";
+        echo "<script>alert('Data berhasil ditambah.'); window.location='../../booking/index.php';</script>";
     }
 } else {
     // Menampilkan pesan jika 'no_polisi' kosong

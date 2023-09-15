@@ -133,7 +133,7 @@ if (isset($_SESSION['sebagai'])) {
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama_engkap']; ?></span>
+                           <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['nama_lengkap']; ?></span>
                                 <img class="img-profile rounded-circle" src="../../assets/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -167,7 +167,7 @@ if (isset($_SESSION['sebagai'])) {
                                     <h6 class="m-0 font-weight-bold text-primary">Pilih Data</h6>
                                 </div>
                                 <div class="card-body">
-                                <form method="POST" action="../proses/proses_tambah.php" enctype="multipart/form-data">
+                                <form method="POST" action="../booking/proses/proses_tambah.php" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <label for="nama_mobil">Nama Mobil</label>
@@ -186,7 +186,7 @@ if (isset($_SESSION['sebagai'])) {
                                             </div>
                                             <div class="form-group">
                                                 <label for="nama_pemesan">Nama Pemesan</label>
-                                                <input type="text" name="nama_pemesan" id="nama_pemesan" required="required" placeholder="<?= $_SESSION['nama_engkap']; ?>" autocomplete="off" class="form-control" readonly>
+                                                <input type="text" value="<?= $_SESSION['nama_lengkap']; ?>" name="nama_pemesan" id="nama_pemesan" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label for="kota_tujuan">Kota Tujuan</label>
