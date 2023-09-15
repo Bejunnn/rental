@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php"; // Include your database connection file.
+include "../../koneksi.php"; // Include your database connection file.
 
 // Check if the 'nama_mobil' parameter exists in the POST request.
 if(isset($_POST['nama_mobil'])) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Sep 2023 pada 07.19
+-- Waktu pembuatan: 15 Sep 2023 pada 05.36
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -57,8 +57,7 @@ INSERT INTO `login` (`id`, `nama_lengkap`, `no_telp`, `alamat_email`, `password`
 
 CREATE TABLE `mobil` (
   `id` int(50) NOT NULL,
-  `merk` varchar(50) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `nama_mobil` varchar(50) NOT NULL,
   `no_polisi` varchar(50) NOT NULL,
   `jumlah_kursi` int(20) NOT NULL,
   `tahun_beli` int(20) NOT NULL,
@@ -72,9 +71,9 @@ CREATE TABLE `mobil` (
 --
 
 CREATE TABLE `permintaan` (
-  `id` int(20) NOT NULL,
-  `merk` varchar(100) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `id_permintaan` int(20) NOT NULL,
+  `nama_mobil` varchar(100) NOT NULL,
+  `nama_pemesan` varchar(50) NOT NULL,
   `no_polisi` varchar(50) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `tanggal_kembali` date NOT NULL,
@@ -85,9 +84,9 @@ CREATE TABLE `permintaan` (
 -- Dumping data untuk tabel `permintaan`
 --
 
-INSERT INTO `permintaan` (`id`, `merk`, `nama`, `no_polisi`, `tanggal_pinjam`, `tanggal_kembali`, `status`) VALUES
-(9, 'suzuki', 'r3', '4', '2023-09-12', '2023-09-13', 0),
-(10, 'suzuki', 'r3', '4', '2023-09-12', '2023-09-14', 0);
+INSERT INTO `permintaan` (`id_permintaan`, `nama_mobil`, `nama_pemesan`, `no_polisi`, `tanggal_pinjam`, `tanggal_kembali`, `status`) VALUES
+(9, 'r3', '', '4', '2023-09-12', '2023-09-13', 0),
+(10, 'r3', '', '4', '2023-09-12', '2023-09-14', 0);
 
 --
 -- Indexes for dumped tables
@@ -109,7 +108,7 @@ ALTER TABLE `mobil`
 -- Indeks untuk tabel `permintaan`
 --
 ALTER TABLE `permintaan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_permintaan`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -131,7 +130,7 @@ ALTER TABLE `mobil`
 -- AUTO_INCREMENT untuk tabel `permintaan`
 --
 ALTER TABLE `permintaan`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_permintaan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
