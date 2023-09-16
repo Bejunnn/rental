@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
   $id = ($_GET["id"]);
 
   // menampilkan data dari database yang mempunyai id=$id
-  $query = "SELECT * FROM Mobil WHERE id='$id'";
+  $query = "SELECT * FROM login WHERE id='$id'";
   $result = mysqli_query($koneksi, $query);
   // jika data gagal diambil maka akan tampil error berikut
   if (!$result) {
@@ -110,8 +110,8 @@ if (isset($_SESSION['sebagai'])) {
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Kelola Data</h6>
-                    <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
-                    <a class="collapse-item active" href="../akun/index.php">Kelola Data akun</a>
+                    <a class="collapse-item active" href="../mobil/index.php">Kelola Data Mobil</a>
+                    <a class="collapse-item active" href="index.php">Kelola Data Akun</a>
                 </div>
             </div>
         </li>
@@ -158,7 +158,7 @@ if (isset($_SESSION['sebagai'])) {
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['nama_lengkap']; ?></span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama_lengkap']; ?></span>
                             <img class="img-profile rounded-circle"
                                 src="../../assets/img/undraw_profile.svg">
                         </a>
@@ -184,42 +184,45 @@ if (isset($_SESSION['sebagai'])) {
         <div class="col-sm-8">
             <div class="card shadow">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Detail Mobil - <?php echo $data['nama_mobil']; ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Detail Akun - <?php echo $data['nama_lengkap']; ?></h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                        <img src="../../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
+                        <img src="../../assets/img/admin.png" class="img-thumbnail mb-4">
                         </div>
                         <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nama</td>
                                     <td>:</td>
-                                    <td><b><?php echo $data['nama_mobil']; ?></b></td>
+                                    <td><b><?php echo $data['nama_lengkap']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Nomer Polisi</td>
+                                    <td>Email</td>
                                     <td>:</td>
-                                    <td><b><?php echo $data['no_polisi']; ?></b></td>
+                                    <td><b><?php echo $data['alamat_email']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Jumlah Kursi</td>
+                                    <td>No Telepon</td>
                                     <td>:</td>
-                                    <td><b><?php echo $data['jumlah_kursi']; ?> Kursi</b></td>
+                                    <td><b><?php echo $data['no_telp']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Tahun Beli</td>
+                                    <td>Password</td>
                                     <td>:</td>
-                                    <td><b>Tahun <?php echo $data['tahun_beli']; ?></b></td>
+                                    <td><b><?php echo $data['password']; ?></b></td>
+                                </tr>
+                                <tr>
+                                    <td>Sebagai</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['sebagai']; ?></b></td>
                                 </tr>
                             </table>	
                         </div>				
                     </div>
                     <div class="row">
                         <div class="col">
-                        <a href="edit.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-info"><i class="fa fa-pen"></i> Ubah</a>
-                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
                         <a href="index.php" class="btn btn-sm btn-secondary"><i class="fa fa-reply"></i> Kembali</a>
                         </div>
                     </div>

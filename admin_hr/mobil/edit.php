@@ -25,6 +25,23 @@ if (isset($_GET['id'])) {
   // apabila tidak ada data GET id pada akan di redirect ke index.php
   echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
 }
+session_start();
+if (!isset($_SESSION['sebagai'])) {
+  header("Location: ../index.php");
+}
+
+if (isset($_SESSION['sebagai'])) {
+    if ($_SESSION['sebagai'] == 'karyawan') {
+      header('Location: karyawan.php');
+      exit;
+    } elseif ($_SESSION['sebagai'] == 'ga') {
+      header("Location: ga.php");
+      exit;
+    } elseif ($_SESSION['sebagai'] == 'hr') {
+      header("Location: hr.php");
+      exit;
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,6 +107,7 @@ if (isset($_GET['id'])) {
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Kelola Data</h6>
             <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
+            <a class="collapse-item active" href="../akun/index.php">Kelola Data akun</a>
           </div>
         </div>
       </li>
@@ -135,7 +153,7 @@ if (isset($_GET['id'])) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama_engkap']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama_lengkap']; ?></span>
                 <img class="img-profile rounded-circle" src="../../assets/img/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->

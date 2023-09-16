@@ -92,6 +92,7 @@ if (isset($_SESSION['sebagai'])) {
                 <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Kelola Data</h6>
                     <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
+                    <a class="collapse-item active" href="../akun/index.php">Kelola Data Akun</a>
                 </div>
             </div>
         </li>
