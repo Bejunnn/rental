@@ -65,7 +65,7 @@ if (isset($_SESSION["user"])) {
            }
            require_once "koneksi.php";
            $sql = "SELECT * FROM login WHERE alamat_email = '$alamat_email'";
-           $result = mysqli_query($conn, $sql);
+           $result = mysqli_query($koneksi, $sql);
            $rowCount = mysqli_num_rows($result);
            if ($rowCount>0) {
             array_push($errors,"Email already exists!");
@@ -77,7 +77,7 @@ if (isset($_SESSION["user"])) {
            }else{
             
             $sql = "INSERT INTO login (nama_lengkap, no_telp, alamat_email, password) VALUES ( ?, ?, ? ,? )";
-            $stmt = mysqli_stmt_init($conn);
+            $stmt = mysqli_stmt_init($koneksi);
             $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
             if ($prepareStmt) {
                 mysqli_stmt_bind_param($stmt,"ssss",$nama_lengkap,  $no_telp, $alamat_email, $password);
@@ -105,7 +105,7 @@ if (isset($_SESSION["user"])) {
 
                         </div>
                         <button type="submit" id="login" class="btn-login" value="Register" name="submit">Sign Up</button>
-                        <a href="login.php">Login Disini</a>
+                        <a href="index.php">Login Disini</a>
                     
                 </form>
 			     </div>

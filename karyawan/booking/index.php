@@ -80,18 +80,11 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                <a class="nav-link" href="index.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Booking</span>
                 </a>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
-                    </div>
-                </div>
             </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -191,6 +184,10 @@ if (isset($_SESSION['sebagai'])) {
                                             <div class="form-group">
                                                 <label for="kota_tujuan">Kota Tujuan</label>
                                                 <input type="text" name="kota_tujuan" id="kota_tujuan" required="required" placeholder="ketik" autocomplete="off" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pengeluaran">Biaya Pengeluaran</label>
+                                                <input type="text" name="pengeluaran" id="pengeluaran" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-6">

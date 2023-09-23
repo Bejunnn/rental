@@ -82,22 +82,18 @@ if (isset($_SESSION['sebagai'])) {
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Kelola Data</h6>
-                    <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
-                    <a class="collapse-item active" href="../akun/index.php">Kelola Data Akun</a>
-                </div>
-            </div>
-        </li>
+                <a class="nav-link" href="index.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akun/index.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akun</span>
+                </a>
+            </li>
 
-        
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -222,6 +218,7 @@ if (isset($_SESSION['sebagai'])) {
                                 <th>No</th>
                                 <th>Mobil</th>
                                 <th>Kursi</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -235,6 +232,15 @@ if (isset($_SESSION['sebagai'])) {
                                     <td><?= $no++ ?></td>
                                     <td><?= $data['nama_mobil']; ?></td>
                                     <td><?= $data['jumlah_kursi']; ?></td>
+                                    <td>
+                                                                            <?php
+                                                                            if ($data['status'] == 1) {
+                                                                                echo '<p><a href="active.php?id=' . $data['id'] . '&status=0" class="btn btn-success">Active</a></p>';
+                                                                            } else {
+                                                                                echo '<p><a href="active.php?id=' . $data['id'] . '&status=1" class="btn btn-danger">inActive</a></p>';
+                                                                            }
+                                                                            ?>
+                                                                        </td>
                                     <td>
                                         <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>
                                         <a title="detail" class="btn btn-info" href="detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>
