@@ -9,7 +9,7 @@ if(isset($_POST['nama_mobil'])) {
     $stmt = mysqli_prepare($koneksi, "SELECT * FROM mobil WHERE nama_mobil = ?");
     
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, 'i', $nama_mobil); // Assuming 'nama_mobil' is an integer.
+        mysqli_stmt_bind_param($stmt, 's', $nama_mobil); // Assuming 'nama_mobil' is a string.
 
         // Execute the prepared statement.
         if (mysqli_stmt_execute($stmt)) {
