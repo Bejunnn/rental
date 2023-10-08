@@ -230,11 +230,10 @@ if (isset($_SESSION['sebagai'])) {
                     </div>
                     <div class="row">
                         <div class="col">
-                            <form method="post">
-                        <a  href="setuju.php?id_permintaan=<?= $row['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Setuju'><button   class="btn btn-success">Setuju</button></span></a>            
-                        <a  href="tidaksetuju.php?id=<?=$row['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Tidak Setuju'><button   class="btn btn-danger" >Tidak Setuju</button></span></a>&nbsp;
+                        <a  href="setuju.php?id_permintaan=<?= $data['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Setuju'><button   class="btn btn-success">Setuju</button></span></a>            
+                        <a  href="tidaksetuju.php?id=<?=$data['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Tidak Setuju'><button   class="btn btn-danger" >Tidak Setuju</button></span></a>&nbsp;
                         <a title="kembali" class="btn btn-secondary" href="mobil.php"><i class="fas fa-reply"></i></a>                               
-                        </form></div>
+                        </div>
                     </div>
                 </div>
             </div>

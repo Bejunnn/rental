@@ -1,16 +1,14 @@
 <?php  
 
-include "../fungsi/koneksi.php";
+include "../../koneksi.php";
 
-if (isset($_GET['id']) && isset($_GET['tgl']) && isset($_GET['unit'])) {
-	$id = $_GET['id'];
-	$tgl = $_GET['tgl'];
-	$unit = $_GET['unit'];
+if (isset($_GET['id_permintaan'])) {
+	$id_permintaan = $_GET['id_permintaan'];
 
-	$query = mysqli_query($koneksi, "UPDATE permintaan SET status=2 WHERE id_permintaan='$id' ");
+	$query = mysqli_query($koneksi, "UPDATE permintaan SET status_perjalanan=2 WHERE id_permintaan='$id_permintaan' ");
 
 	if($query) {
-		header("location:index.php?p=detilpermintaan&tgl=$tgl&unit=$unit");
+		header("location:mobil.php");
 	} else {
 		echo "error : " . mysqli_error($koneksi);
 	}
