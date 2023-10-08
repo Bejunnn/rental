@@ -1,6 +1,6 @@
 <?php
 // memanggil file koneksi.php untuk membuat koneksi
-include '../../koneksi.php';
+include '../koneksi.php';
 
 // mengecek apakah di url ada nilai GET id
 if (isset($_GET['id'])) {
@@ -10,6 +10,28 @@ if (isset($_GET['id'])) {
   // menampilkan data dari database yang mempunyai id=$id
   $query = "SELECT * FROM Mobil WHERE id='$id'";
   $result = mysqli_query($koneksi, $query);
+  if (isset($_POST['btn-pesan'])) {
+    if (mysqli_num_rows($result) === 1) {
+        $rows = mysqli_fetch_assoc($result);
+        if ($rows['status'] == '1') {
+            return header("Location: booking/index.php");
+    
+            if (isset($_SESSION['nama_mobil'])) {
+            header("Location: detail.php");
+            exit;
+            }
+        } elseif ($rows['status'] == '0') {
+            return header("Location: index.php");
+    
+            if (isset($_SESSION['nama_mobil'])) {
+            header("Location: detail.php");
+            exit;
+            }
+    }else {
+        echo "<script>alert('id tidak ditemukan!')</script>";
+    }
+    }
+}
   // jika data gagal diambil maka akan tampil error berikut
   if (!$result) {
     die("Query Error: " . mysqli_errno($koneksi) .
@@ -31,8 +53,8 @@ if (!isset($_SESSION['sebagai'])) {
 }
 
 if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'karyawan') {
-      header('Location: karyawan.php');
+    if ($_SESSION['sebagai'] == 'admin_hr') {
+      header('Location: admin_hr.php');
       exit;
     } elseif ($_SESSION['sebagai'] == 'ga') {
       header("Location: ga.php");
@@ -57,14 +79,14 @@ if (isset($_SESSION['sebagai'])) {
     <title>Kelola Data Mobil</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -79,7 +101,7 @@ if (isset($_SESSION['sebagai'])) {
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
             <div>
-            <img src="../../assets/img/madep.png" alt="logo" width="45px">
+            <img src="../assets/img/madep.png" alt="logo" width="45px">
             </div>
             
         </a>
@@ -160,7 +182,7 @@ if (isset($_SESSION['sebagai'])) {
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['nama_lengkap']; ?></span>
                             <img class="img-profile rounded-circle"
-                                src="../../assets/img/undraw_profile.svg">
+                                src="../assets/img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -189,7 +211,7 @@ if (isset($_SESSION['sebagai'])) {
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                        <img src="../../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
+                        <img src="../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
                         </div>
                         <div class="col-md-6">
                             <table class="table table-borderless">
@@ -218,9 +240,10 @@ if (isset($_SESSION['sebagai'])) {
                     </div>
                     <div class="row">
                         <div class="col">
-                        <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>&nbsp;
-                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
-                        <a title="kembali" class="btn btn-secondary" href="index.php"><i class="fas fa-reply"></i></a>
+                        <form method="post">
+                        <button title="booking" class="btn btn-primary" name="btn-pesan"><i class="fas fa-receipt"></i></button>&nbsp;
+                        <a title="kembali" class="btn btn-secondary" href="index.php"><i class="fas fa-reply"></i></a>                               
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -242,28 +265,28 @@ if (isset($_SESSION['sebagai'])) {
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Bootstrap core JavaScript-->
-    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../assets/js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../../assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="../assets/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../../assets/js/demo/chart-area-demo.js"></script>
-    <script src="../../assets/js/demo/chart-pie-demo.js"></script>
+    <script src="../assets/js/demo/chart-area-demo.js"></script>
+    <script src="../assets/js/demo/chart-pie-demo.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../../assets/js/demo/datatables-demo.js"></script>
+    <script src="../assets/js/demo/datatables-demo.js"></script>
 
 
 </body>

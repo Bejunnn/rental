@@ -233,14 +233,14 @@ if (isset($_SESSION['sebagai'])) {
                                     <td><?= $data['nama_mobil']; ?></td>
                                     <td><?= $data['jumlah_kursi']; ?></td>
                                     <td>
-                                                                            <?php
-                                                                            if ($data['status'] == 1) {
-                                                                                echo '<p><a href="active.php?id=' . $data['id'] . '&status=0" class="btn btn-success">Active</a></p>';
-                                                                            } else {
-                                                                                echo '<p><a href="active.php?id=' . $data['id'] . '&status=1" class="btn btn-danger">inActive</a></p>';
-                                                                            }
-                                                                            ?>
-                                                                        </td>
+                                        <?php
+                                        if ($data['status'] == 1) {
+                                            echo '<p><a href="active.php?id=' . $data['id'] . '&status=0" class="btn btn-success">Active</a></p>';
+                                        } else {
+                                            echo '<p><a href="active.php?id=' . $data['id'] . '&status=1" class="btn btn-danger">inActive</a></p>';
+                                        }
+                                        ?>
+                                    </td>
                                     <td>
                                         <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>
                                         <a title="detail" class="btn btn-info" href="detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>

@@ -3,13 +3,14 @@
 include '../../koneksi.php';
 
 // mengecek apakah di url ada nilai GET id
-if (isset($_GET['id'])) {
+if (isset($_GET['id_permintaan'])) {
   // ambil nilai id dari url dan disimpan dalam variabel $id
-  $id = ($_GET["id"]);
+  $id_permintaan = ($_GET["id_permintaan"]);
 
   // menampilkan data dari database yang mempunyai id=$id
-  $query = "SELECT * FROM Mobil WHERE id='$id'";
+  $query = "SELECT * FROM permintaan WHERE id_permintaan='$id_permintaan'";
   $result = mysqli_query($koneksi, $query);
+
   // jika data gagal diambil maka akan tampil error berikut
   if (!$result) {
     die("Query Error: " . mysqli_errno($koneksi) .
@@ -184,44 +185,56 @@ if (isset($_SESSION['sebagai'])) {
         <div class="col-sm-8">
             <div class="card shadow">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Detail Mobil - <?php echo $data['nama_mobil']; ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Detail Permintaan - <?php echo $data['nama_pemesan']; ?></h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                        <img src="../../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
-                        </div>
-                        <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
-                                    <td>Nama</td>
+                                    <td>Nama Pemesan</td>
                                     <td>:</td>
-                                    <td><b><?php echo $data['nama_mobil']; ?></b></td>
+                                    <td><b><?php echo $data['nama_pemesan']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Nomer Polisi</td>
+                                    <td>Tanggal Peminjaman</td>
                                     <td>:</td>
-                                    <td><b><?php echo $data['no_polisi']; ?></b></td>
+                                    <td><b><?php echo $data['tanggal_pinjam']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Jumlah Kursi</td>
+                                    <td>Tanggal Pengembalian</td>
                                     <td>:</td>
-                                    <td><b><?php echo $data['jumlah_kursi']; ?> Kursi</b></td>
+                                    <td><b><?php echo $data['tanggal_kembali']; ?> Kursi</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Tahun Beli</td>
+                                    <td>Kota Tujuan</td>
                                     <td>:</td>
-                                    <td><b>Tahun <?php echo $data['tahun_beli']; ?></b></td>
+                                    <td><b><?php echo $data['kota_tujuan']; ?></b></td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>:</td>
+                                    <td > <?php
+                                        if ($data['status_perjalanan'] == 0){
+                                            echo '<span class=text-warning>Menunggu Persetujuan</span>';
+                                        } elseif ($data['status_perjalanan'] == 1) {
+                                            echo '<span class=text-primary>Telah Disetujui</span>';
+                                        } else {
+                                            echo '<span class=text-danger>Tidak Disetujui</span>';
+                                        }
+                                        ?> 
+                                    </td>  
                                 </tr>
                             </table>	
                         </div>				
                     </div>
                     <div class="row">
                         <div class="col">
-                        <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>&nbsp;
-                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
-                        <a title="kembali" class="btn btn-secondary" href="index.php"><i class="fas fa-reply"></i></a>
-                        </div>
+                            <form method="post">
+                        <a  href="setuju.php?id_permintaan=<?= $row['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Setuju'><button   class="btn btn-success">Setuju</button></span></a>            
+                        <a  href="tidaksetuju.php?id=<?=$row['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Tidak Setuju'><button   class="btn btn-danger" >Tidak Setuju</button></span></a>&nbsp;
+                        <a title="kembali" class="btn btn-secondary" href="mobil.php"><i class="fas fa-reply"></i></a>                               
+                        </form></div>
                     </div>
                 </div>
             </div>

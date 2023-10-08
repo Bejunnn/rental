@@ -1,4 +1,11 @@
 <?php
+include('../koneksi.php');
+$result = mysqli_query($koneksi, "SELECT * FROM mobil");
+$rows = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+}
+
 session_start();
 if (!isset($_SESSION['sebagai'])) {
   header("Location: ../index.php");
@@ -153,18 +160,67 @@ if (isset($_SESSION['sebagai'])) {
                 <div class="container-fluid">
 
                     <!-- DataTales Example -->
-                    
+
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Dashboard</h6>
                         </div>
                         <div class="card-body">
-                            <div >
-                            Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai <?= $_SESSION['sebagai']; ?> di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online.
+                            <div>
+                                Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai Karyawan.
                             </div>
                         </div>
 
-                </div>
+                    </div>
+                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar mobil</h6>
+                        </div>
+                        <div class="card-body">
+
+                            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Mobil</th>
+                                        <th>Plat Nomor</th>
+                                        <th>Kursi</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                $no = '1';
+                                foreach ($rows as $data) {
+                                ?>
+                                    <tbody>
+                                        <tr>
+
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $data['nama_mobil']; ?></td>
+                                            <td><?= $data['no_polisi']; ?></td>
+                                            <td><?= $data['jumlah_kursi']; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($data['status'] == 1) {
+                                                    echo '<p><a href="" class="btn btn-success">Available</a></p>';
+                                                } else {
+                                                    echo '<p><a href="" class="btn btn-danger">Not Available</a></p>';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <a title="detail" class="btn btn-info" href="detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                }
+                                    ?>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                 </div>
 
