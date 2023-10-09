@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Sep 2023 pada 03.40
+-- Waktu pembuatan: 09 Okt 2023 pada 04.54
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -73,7 +73,8 @@ CREATE TABLE `mobil` (
 
 INSERT INTO `mobil` (`id`, `nama_mobil`, `no_polisi`, `jumlah_kursi`, `tahun_beli`, `gambar`, `status`) VALUES
 (2, 'suzki', 'b 4386 hdf', 6, 2018, '576-Gambar WhatsApp 2023-09-11 pukul 08.55.29.jpg', 0),
-(3, 'kijang', 'b 4863 jds', 4, 2010, '675-495521.jpg', 1);
+(3, 'kijang', 'b 4863 jds', 4, 2010, '675-495521.jpg', 1),
+(4, 'r3', 'b 635 dg', 5, 2009, '16-WIN_20220824_02_29_16_Pro.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,30 @@ INSERT INTO `permintaan` (`id_permintaan`, `nama_mobil`, `nama_pemesan`, `kota_t
 (15, 'kijang', '', 'bogor', '', 'b 4386 hdf', '2023-09-22', '2023-09-25', 0, 0),
 (16, 'kijang', '', 'bogor', '', 'b 4386 hdf', '2023-09-15', '2023-09-15', 0, 0),
 (17, 'suzuko', 'epi', 'bogor', '', 'b 4386 hdf', '2023-09-15', '2023-10-01', 0, 0),
-(18, 'kijang', 'epi', 'bogor', '', 'b 4386 hdf', '2023-10-07', '2023-10-07', 0, 0);
+(18, 'kijang', 'epi', 'bogor', '', 'b 4386 hdf', '2023-10-07', '2023-10-07', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `permintaan_opt`
+--
+
+CREATE TABLE `permintaan_opt` (
+  `id_permintaan_opt` int(15) NOT NULL,
+  `nama_pemesan` varchar(50) NOT NULL,
+  `kota_tujuan` varchar(50) NOT NULL,
+  `kendaraan` varchar(50) NOT NULL,
+  `pengeluaran` varchar(50) NOT NULL,
+  `status_pengeluaran` int(4) NOT NULL,
+  `status_perjalanan` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `permintaan_opt`
+--
+
+INSERT INTO `permintaan_opt` (`id_permintaan_opt`, `nama_pemesan`, `kota_tujuan`, `kendaraan`, `pengeluaran`, `status_pengeluaran`, `status_perjalanan`) VALUES
+(1, 'epi', 'jekarta', 'Taxi', '500.000', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -130,6 +154,12 @@ ALTER TABLE `permintaan`
   ADD PRIMARY KEY (`id_permintaan`);
 
 --
+-- Indeks untuk tabel `permintaan_opt`
+--
+ALTER TABLE `permintaan_opt`
+  ADD PRIMARY KEY (`id_permintaan_opt`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -143,13 +173,19 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT untuk tabel `mobil`
 --
 ALTER TABLE `mobil`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `permintaan`
 --
 ALTER TABLE `permintaan`
   MODIFY `id_permintaan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `permintaan_opt`
+--
+ALTER TABLE `permintaan_opt`
+  MODIFY `id_permintaan_opt` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

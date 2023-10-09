@@ -79,13 +79,13 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="mobil/index.php" >
+                <a class="nav-link" href="../mobil/index.php" >
                     <i class="fas fa-fw fa-car"></i>
                     <span>Data Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="akun/index.php" >
+                <a class="nav-link" href="../akun/index.php" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Mobil</span>
                 </a>
@@ -95,7 +95,7 @@ if (isset($_SESSION['sebagai'])) {
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item">
-                <a class="nav-link" href="../logout.php">
+                <a class="nav-link" href="../../logout.php">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray"></i>
                     <span>Logout</span></a>
             </li>
@@ -135,7 +135,7 @@ if (isset($_SESSION['sebagai'])) {
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a href="../logout.php" class="dropdown-item">
+                                <a href="../../logout.php" class="dropdown-item">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

@@ -80,11 +80,22 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Booking</span>
-                </a>
-            </li>
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-receipt"></i>
+                <span>Booking</span>
+            </a>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Booking</h6>
+                    <a class="collapse-item active" href="../booking/mobil.php">Mobil</a>
+                    <a class="collapse-item active" href="non_mobil.php">Non Mobil</a>
+                </div>
+            </div>
+        </li>
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -154,29 +165,14 @@ if (isset($_SESSION['sebagai'])) {
 
                     <div class="row">
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="card shadow">
                                 <div class="card-header">
                                     <h6 class="m-0 font-weight-bold text-primary">Pilih Data</h6>
                                 </div>
                                 <div class="card-body">
-                                <form method="POST" action="../booking/proses/proses_tambah.php" enctype="multipart/form-data">
+                                <form method="POST" action="../booking/proses/proses_tambah_opt.php" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <div class="form-group">
-                                                <label for="nama_mobil">Nama Mobil</label>
-                                                <select name="nama_mobil" id="nama_mobil" onchange="detail()" class="form-control">
-                                                    <option value="">Pilih Nama Mobil</option>
-                                                    <?php
-                                                    include "koneksi.php";
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM mobil");
-                                                    while ($data = mysqli_fetch_array($query)) {
-                                                    ?>
-                                                        <option value="<?php echo $data['nama_mobil']; ?>"><?php echo $data['nama_mobil']; ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
                                             <div class="form-group">
                                                 <label for="nama_pemesan">Nama Pemesan</label>
                                                 <input type="text" value="<?= $_SESSION['nama_lengkap']; ?>" name="nama_pemesan" id="nama_pemesan" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
@@ -186,39 +182,18 @@ if (isset($_SESSION['sebagai'])) {
                                                 <input type="text" name="kota_tujuan" id="kota_tujuan" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                                             </div>
                                             <div class="form-group">
+                                                <label for="kendaraan">Kendaraan Yang dipakai</label>
+                                                <select name="kendaraan" id="kendaraan" class="form-control">
+                                                <option value="">Pilih Nama Kendaraan</option>
+                                                <option value="Grab">Grab</option>
+                                                <option value="Gojek">Gojek</option>
+                                                <option value="Taxi">Taxi</option>
+                                                <option value="Maxim">Maxim</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="pengeluaran">Biaya Pengeluaran</label>
                                                 <input type="text" name="pengeluaran" id="pengeluaran" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-6">
-                                                    <label for="no_polisi">No Polisi</label>
-                                                    <input type="text" name="no_polisi" id="no_polisi" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
-                                                </div>
-                                                
-                                                <div class="form-group col-6">
-                                                    <label for="jumlah_kursi">Jumlah Kursi</label>
-                                                    <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-6">
-                                                <label for="tahun_beli">Tahun Beli</label>
-                                                <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="tanggal_pinjam">Tanggal Pinjam</label>
-                                                        <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" required="required" autocomplete="off" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="tanggal_kembali">Tanggal Kembali</label>
-                                                        <input type="date" name="tanggal_kembali" id="tanggal_kembali" required="required" autocomplete="off" class="form-control">
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -226,47 +201,6 @@ if (isset($_SESSION['sebagai'])) {
                                             <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Batal</button>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-8">
-                            <div class="card shadow">
-                                <div class="card-header">
-                                    <h6 class="m-0 font-weight-bold text-primary">Daftar Mobil</h6>
-                                </div>
-                                <div class="card-body">
-
-                                    <table class="table table-bordered" id="dataTable" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Mobil</th>
-                                                <th>Kursi</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        $no = '1';
-                                        foreach ($rows as $data) {
-                                        ?>
-                                            <tbody>
-                                                <tr>
-
-                                                    <td><?= $no++ ?></td>
-                                                    <td><?= $data['nama_mobil']; ?></td>
-                                                    <td><?= $data['jumlah_kursi']; ?></td>
-                                                    <td>
-                                                        <a href="" class="btn btn-sm btn-info"><i class="fa fa-pen"></i> Ubah</a>
-                                                        <a href="" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Detail</a>
-                                                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id= $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
-                                                    </td>
-                                                </tr>
-                                            <?php
-                                        }
-                                            ?>
-                                            </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -313,21 +247,3 @@ if (isset($_SESSION['sebagai'])) {
 </body>
 
 </html>
-<script>
-    function detail() {
-        var nama_mobil = $("#nama_mobil").val();
-        $.ajax({
-            url: "data.php",
-            method: "POST",
-            data: {
-                nama_mobil:nama_mobil
-            },
-            dataType: "json",
-            success: function(data) { // Corrected "success" spelling
-                $('#no_polisi').val(data.no_polisi);
-                $('#jumlah_kursi').val(data.jumlah_kursi);
-                $('#tahun_beli').val(data.tahun_beli);
-            }
-        })
-    }
-</script>
