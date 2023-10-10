@@ -89,7 +89,7 @@ if (isset($_SESSION['sebagai'])) {
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Booking</h6>
-                    <a class="collapse-item active" href="../booking/mobil.php">Mobil</a>
+                    <a class="collapse-item" href="../booking/mobil.php">Mobil</a>
                     <a class="collapse-item active" href="non_mobil.php">Non Mobil</a>
                 </div>
             </div>

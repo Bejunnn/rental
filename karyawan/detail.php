@@ -3,25 +3,25 @@
 include '../koneksi.php';
 
 // mengecek apakah di url ada nilai GET id
-if (isset($_GET['id'])) {
+if (isset($_GET['id_mobil'])) {
   // ambil nilai id dari url dan disimpan dalam variabel $id
-  $id = ($_GET["id"]);
+  $id_mobil = ($_GET["id_mobil"]);
 
   // menampilkan data dari database yang mempunyai id=$id
-  $query = "SELECT * FROM Mobil WHERE id='$id'";
+  $query = "SELECT * FROM Mobil WHERE id_mobil='$id_mobil'";
   $result = mysqli_query($koneksi, $query);
   if (isset($_POST['btn-pesan'])) {
     if (mysqli_num_rows($result) === 1) {
         $rows = mysqli_fetch_assoc($result);
         if ($rows['status'] == '1') {
-            return header("Location: booking/index.php");
+            return header("Location: booking/mobil.php");
     
             if (isset($_SESSION['nama_mobil'])) {
             header("Location: detail.php");
             exit;
             }
         } elseif ($rows['status'] == '0') {
-            return header("Location: index.php");
+            return header("Location: booking/non_mobil.php");
     
             if (isset($_SESSION['nama_mobil'])) {
             header("Location: detail.php");

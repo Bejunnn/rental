@@ -90,7 +90,7 @@ if (isset($_SESSION['sebagai'])) {
                 <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Booking</h6>
                     <a class="collapse-item active" href="mobil.php">Mobil</a>
-                    <a class="collapse-item active" href="../booking/non_mobil.php">Non Mobil</a>
+                    <a class="collapse-item" href="../booking/non_mobil.php">Non Mobil</a>
                 </div>
             </div>
         </li>
@@ -171,6 +171,10 @@ if (isset($_SESSION['sebagai'])) {
                                 <div class="card-body">
                                 <form method="POST" action="../booking/proses/proses_tambah.php" enctype="multipart/form-data">
                                         <div class="form-group">
+                                        <div class="form-group">
+                                                <label for="id_mobil">Id Mobil</label>
+                                                <input type="text" name="id_mobil" id="id_mobil" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="nama_mobil">Nama Mobil</label>
                                                 <select name="nama_mobil" id="nama_mobil" onchange="detail()" class="form-control">
@@ -291,6 +295,7 @@ if (isset($_SESSION['sebagai'])) {
             },
             dataType: "json",
             success: function(data) { // Corrected "success" spelling
+                $('#id_mobil').val(data.id_mobil);
                 $('#no_polisi').val(data.no_polisi);
                 $('#jumlah_kursi').val(data.jumlah_kursi);
                 $('#tahun_beli').val(data.tahun_beli);

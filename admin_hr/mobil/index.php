@@ -235,16 +235,16 @@ if (isset($_SESSION['sebagai'])) {
                                     <td>
                                         <?php
                                         if ($data['status'] == 1) {
-                                            echo '<p><a href="active.php?id=' . $data['id'] . '&status=0" class="btn btn-success">Active</a></p>';
+                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=0" class="btn btn-success">Active</a></p>';
                                         } else {
-                                            echo '<p><a href="active.php?id=' . $data['id'] . '&status=1" class="btn btn-danger">inActive</a></p>';
+                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=1" class="btn btn-danger">inActive</a></p>';
                                         }
                                         ?>
                                     </td>
                                     <td>
-                                        <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>
-                                        <a title="detail" class="btn btn-info" href="detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>
-                                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
+                                        <a title="edit" class="btn btn-primary" href="edit.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-edit"></i></a>
+                                        <a title="detail" class="btn btn-info" href="detail.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-eye"></i></a>
+                                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id_mobil=<?php echo $data['id_mobil']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
                                     </td>
                                 </tr>
                                 <?php

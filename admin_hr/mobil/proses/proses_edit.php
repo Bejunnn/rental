@@ -3,7 +3,7 @@
 include '../../../koneksi.php';
 
 	// membuat variabel untuk menampung data dari form
-  $id = $_POST['id'];
+  $id_mobil = $_POST['id_mobil'];
   $nama_mobil = $_POST['nama_mobil'];
   $no_polisi = $_POST['no_polisi'];
   $jumlah_kursi = $_POST['jumlah_kursi'];
@@ -22,7 +22,7 @@ include '../../../koneksi.php';
                       
                     // jalankan query UPDATE berdasarkan ID yang produknya kita edit
                    $query  = "UPDATE mobil SET nama_mobil = '$nama_mobil', no_polisi = '$no_polisi',jumlah_kursi = '$jumlah_kursi',tahun_beli = '$tahun_beli', gambar = '$nama_gambar_baru'";
-                    $query .= "WHERE id = '$id'";
+                    $query .= "WHERE id_mobil = '$id_mobil'";
                     $result = mysqli_query($koneksi, $query);
                     // periska query apakah ada error
                     if(!$result){
@@ -40,7 +40,7 @@ include '../../../koneksi.php';
     } else {
       // jalankan query UPDATE berdasarkan ID yang produknya kita edit
       $query  = "UPDATE mobil SET nama_mobil = '$nama_mobil', no_polisi = '$no_polisi',jumlah_kursi = '$jumlah_kursi',tahun_beli = '$tahun_beli'";
-      $query .= "WHERE id = '$id'";
+      $query .= "WHERE id_mobil = '$id_mobil'";
       $result = mysqli_query($koneksi, $query);
       // periska query apakah ada error
       if(!$result){

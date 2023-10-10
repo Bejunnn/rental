@@ -3,12 +3,12 @@
 include '../../koneksi.php';
 
 // mengecek apakah di url ada nilai GET id
-if (isset($_GET['id'])) {
+if (isset($_GET['id_mobil'])) {
   // ambil nilai id dari url dan disimpan dalam variabel $id
-  $id = ($_GET["id"]);
+  $id_mobil = ($_GET["id_mobil"]);
 
   // menampilkan data dari database yang mempunyai id=$id
-  $query = "SELECT * FROM Mobil WHERE id='$id'";
+  $query = "SELECT * FROM Mobil WHERE id_mobil='$id_mobil'";
   $result = mysqli_query($koneksi, $query);
   // jika data gagal diambil maka akan tampil error berikut
   if (!$result) {
@@ -218,8 +218,8 @@ if (isset($_SESSION['sebagai'])) {
                     </div>
                     <div class="row">
                         <div class="col">
-                        <a title="edit" class="btn btn-primary" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fas fa-edit"></i></a>&nbsp;
-                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
+                        <a title="edit" class="btn btn-primary" href="edit.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-edit"></i></a>&nbsp;
+                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id_mobil=<?php echo $data['id_mobil']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
                         <a title="kembali" class="btn btn-secondary" href="index.php"><i class="fas fa-reply"></i></a>
                         </div>
                     </div>

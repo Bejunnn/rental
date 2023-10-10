@@ -1,16 +1,16 @@
 <?php
 include('../../koneksi.php');
 
-$id = $_GET['id'];
+$id_mobil = $_GET['id_mobil'];
 $status = $_GET['status'];
 
 // Create a prepared statement
-$updateQuery = "UPDATE mobil SET status = ? WHERE id = ?";
+$updateQuery = "UPDATE mobil SET status = ? WHERE id_mobil = ?";
 $stmt = mysqli_prepare($koneksi, $updateQuery);
 
 if ($stmt) {
     // Bind the parameters
-    mysqli_stmt_bind_param($stmt, "ii", $status, $id);
+    mysqli_stmt_bind_param($stmt, "ii", $status, $id_mobil);
 
     // Execute the statement
     if (mysqli_stmt_execute($stmt)) {

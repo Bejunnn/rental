@@ -81,17 +81,16 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item ">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-receipt"></i>
                 <span>Booking</span>
             </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Booking</h6>
-                    <a class="collapse-item active" href="../karyawan/booking/mobil.php">Mobil</a>
-                    <a class="collapse-item active" href="../karyawan/booking/non_mobil.php">Non Mobil</a>
+                    <a class="collapse-item" href="../karyawan/booking/mobil.php">Mobil</a>
+                    <a class="collapse-item" href="../karyawan/booking/non_mobil.php">Non Mobil</a>
                 </div>
             </div>
         </li>
@@ -220,7 +219,7 @@ if (isset($_SESSION['sebagai'])) {
                                                 ?>
                                             </td>
                                             <td>
-                                                <a title="detail" class="btn btn-info" href="detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>
+                                                <a title="detail" class="btn btn-info" href="detail.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     <?php
