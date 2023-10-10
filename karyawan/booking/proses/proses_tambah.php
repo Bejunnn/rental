@@ -3,6 +3,7 @@
 include '../../../koneksi.php';
 
 // membuat variabel untuk menampung data dari form
+$id_mobil = $_POST['id_mobil'];
 $no_polisi = $_POST['no_polisi'];
 $nama_pemesan = $_POST['nama_pemesan'];
 $nama_mobil = $_POST['nama_mobil'];
@@ -14,8 +15,8 @@ $tanggal_kembali = $_POST['tanggal_kembali'];
 // cek dulu jika ada data yang harus dimasukkan (misalnya, jika 'no_polisi' tidak kosong)
 if (!empty($nama_mobil)) {
     // Insert data into the 'permintaan' table
-    $query = "INSERT INTO permintaan (no_polisi, nama_pemesan, nama_mobil,pengeluaran,kota_tujuan ,tanggal_pinjam, tanggal_kembali) 
-              VALUES ('$no_polisi','$nama_pemesan', '$nama_mobil','$pengeluaran', '$kota_tujuan','$tanggal_pinjam', '$tanggal_kembali')";
+    $query = "INSERT INTO permintaan (id_mobil,no_polisi, nama_pemesan, nama_mobil,pengeluaran,kota_tujuan ,tanggal_pinjam, tanggal_kembali) 
+              VALUES ('$id_mobil','$no_polisi','$nama_pemesan', '$nama_mobil','$pengeluaran', '$kota_tujuan','$tanggal_pinjam', '$tanggal_kembali')";
     
     $result = mysqli_query($koneksi, $query);
 

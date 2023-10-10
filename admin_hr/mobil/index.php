@@ -176,26 +176,24 @@ if (isset($_SESSION['sebagai'])) {
                             <label for="nama_mobil">Nama Mobil</label>
                             <input type="text" name="nama_mobil" id="nama_mobil" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                         </div>
-                        <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group">
                                 <label for="no_polisi">No Polisi</label>
                                 <input type="text" name="no_polisi" id="no_polisi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                             </div>
+                            <div class="row">
                             <div class="form-group col-6">
                                 <label for="jumlah_kursi">Jumlah Kursi</label>
                                 <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                             </div>
-                        </div>
-                        <div class="row">  
                             <div class="form-group col-6">
                                 <label for="tahun_beli">Tahun Beli</label>
                                 <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                             </div>
-                            <div class="form-group col-6">
+                            </div>
+                            <div class="form-group">
                                 <label for="gambar">Gambar Mobil</label>
                                 <input type="file" name="gambar" id="gambar" required="required" placeholder="ketik" autocomplete="off" class="form-control-file">
                             </div>
-                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-sm btn-primary" name="tambah"><i class="fa fa-plus"></i> Tambah</button>
                             <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Batal</button>
@@ -235,9 +233,9 @@ if (isset($_SESSION['sebagai'])) {
                                     <td>
                                         <?php
                                         if ($data['status'] == 1) {
-                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=0" class="btn btn-success">Active</a></p>';
+                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=0" class="btn btn-danger">inActive</a></p>';
                                         } else {
-                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=1" class="btn btn-danger">inActive</a></p>';
+                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=1" class="btn btn-success">Active</a></p>';
                                         }
                                         ?>
                                     </td>
