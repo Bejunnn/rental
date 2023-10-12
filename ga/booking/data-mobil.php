@@ -1,6 +1,6 @@
 <?php
 include('../../koneksi.php');
-$result = mysqli_query($koneksi, "SELECT * FROM permintaan_opt WHERE status_perjalanan");
+$result = mysqli_query($koneksi, "SELECT * FROM permintaan WHERE status_perjalanan");
 $rows = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
@@ -8,20 +8,20 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-    header("Location: ../../index.php");
+  header("Location: ../../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'karyawan') {
-        header('Location: karyawan.php');
-        exit;
-    } elseif ($_SESSION['sebagai'] == 'ga') {
-        header("Location: ga.php");
-        exit;
-    } elseif ($_SESSION['sebagai'] == 'hr') {
-        header("Location: hr.php");
-        exit;
-    }
+  if ($_SESSION['sebagai'] == 'admin_hr') {
+    header('Location: admin_hr.php');
+    exit;
+  } elseif ($_SESSION['sebagai'] == 'karyawan') {
+    header("Location: karyawan.php");
+    exit;
+  } elseif ($_SESSION['sebagai'] == 'hr') {
+    header("Location: hr.php");
+    exit;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -78,19 +78,30 @@ if (isset($_SESSION['sebagai'])) {
 
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item ">
+                <a class="nav-link" href="mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking</span>
+                </a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link" href="../mobil/index.php">
+                <a class="nav-link" href="non_mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking Non Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="data-mobil.php" >
                     <i class="fas fa-fw fa-car"></i>
-                    <span>Data Mobil</span>
+                    <span>Data Permintaan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../akun/index.php">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Mobil</span>
+                <a class="nav-link" href="data-non_mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Non Mobil</span>
                 </a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -171,9 +182,9 @@ if (isset($_SESSION['sebagai'])) {
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Tanggal Perminjaman</th>
                                             <th>Nama</th>
                                             <th>Kota Tujuan</th>
-                                            <th>kendaraan</th>
                                             <th>Detail</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -187,14 +198,14 @@ if (isset($_SESSION['sebagai'])) {
                                                 <tr>
 
                                                     <td><?= $no++ ?></td>
+                                                    <td><?= $data['tanggal_pinjam']; ?></td>
                                                     <td><?= $data['nama_pemesan']; ?></td>
                                                     <td><?= $data['kota_tujuan']; ?></td>
-                                                    <td><?= $data['kendaraan']; ?></td>
                                                     <td>
-                                                        <a href="detail-permintaan_non_mobil.php?id_permintaan_opt=<?php echo $data['id_permintaan_opt']; ?>"><span data-placement='top' data-toggle='tooltip' title='Detail Permintaan'><button class="btn btn-info">Detail Booking</button></span></a>
+                                                        <a href="detail-permintaan_mobil.php?id_permintaan=<?php echo $data['id_permintaan']; ?>"><span data-placement='top' data-toggle='tooltip' title='Detail Permintaan'><button class="btn btn-info">Detail Booking</button></span></a>
                                                     </td>
                                                     <td>
-                                                    <a title="hapus" class="btn btn-danger" href="proses/proses_hapus_opt.php?id_permintaan_opt=<?php echo $data['id_permintaan_opt']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
+                                                    <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id_permintaan=<?php echo $data['id_permintaan']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
                                                     </td>
                                                 </tr>
                                             <?php

@@ -4,66 +4,66 @@ include '../koneksi.php';
 
 // mengecek apakah di url ada nilai GET id
 if (isset($_GET['id_mobil'])) {
-  // ambil nilai id dari url dan disimpan dalam variabel $id
-  $id_mobil = ($_GET["id_mobil"]);
+    // ambil nilai id dari url dan disimpan dalam variabel $id
+    $id_mobil = ($_GET["id_mobil"]);
 
-  // menampilkan data dari database yang mempunyai id=$id
-  $query = "SELECT * FROM Mobil WHERE id_mobil='$id_mobil'";
-  $result = mysqli_query($koneksi, $query);
-  if (isset($_POST['btn-pesan'])) {
-    if (mysqli_num_rows($result) === 1) {
-        $rows = mysqli_fetch_assoc($result);
-        if ($rows['status'] == '1') {
-            return header("Location: booking/mobil.php");
-    
-            if (isset($_SESSION['nama_mobil'])) {
-            header("Location: detail.php");
-            exit;
+    // menampilkan data dari database yang mempunyai id=$id
+    $query = "SELECT * FROM Mobil WHERE id_mobil='$id_mobil'";
+    $result = mysqli_query($koneksi, $query);
+    if (isset($_POST['btn-pesan'])) {
+        if (mysqli_num_rows($result) === 1) {
+            $rows = mysqli_fetch_assoc($result);
+            if ($rows['status'] == '1') {
+                return header("Location: booking/mobil.php");
+
+                if (isset($_SESSION['nama_mobil'])) {
+                    header("Location: detail.php");
+                    exit;
+                }
+            } elseif ($rows['status'] == '0') {
+                return header("Location: booking/non_mobil.php");
+
+                if (isset($_SESSION['nama_mobil'])) {
+                    header("Location: detail.php");
+                    exit;
+                }
+            } else {
+                echo "<script>alert('id tidak ditemukan!')</script>";
             }
-        } elseif ($rows['status'] == '0') {
-            return header("Location: booking/non_mobil.php");
-    
-            if (isset($_SESSION['nama_mobil'])) {
-            header("Location: detail.php");
-            exit;
-            }
-    }else {
-        echo "<script>alert('id tidak ditemukan!')</script>";
+        }
     }
+    // jika data gagal diambil maka akan tampil error berikut
+    if (!$result) {
+        die("Query Error: " . mysqli_errno($koneksi) .
+            " - " . mysqli_error($koneksi));
     }
-}
-  // jika data gagal diambil maka akan tampil error berikut
-  if (!$result) {
-    die("Query Error: " . mysqli_errno($koneksi) .
-      " - " . mysqli_error($koneksi));
-  }
-  // mengambil data dari database
-  $data = mysqli_fetch_assoc($result);
-  // apabila data tidak ada pada database maka akan dijalankan perintah ini
-  if (!count($data)) {
-    echo "<script>alert('Data tidak ditemukan pada database');window.location='index.php';</script>";
-  }
+    // mengambil data dari database
+    $data = mysqli_fetch_assoc($result);
+    // apabila data tidak ada pada database maka akan dijalankan perintah ini
+    if (!count($data)) {
+        echo "<script>alert('Data tidak ditemukan pada database');window.location='index.php';</script>";
+    }
 } else {
-  // apabila tidak ada data GET id pada akan di redirect ke index.php
-  echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
+    // apabila tidak ada data GET id pada akan di redirect ke index.php
+    echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
 }
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
     if ($_SESSION['sebagai'] == 'admin_hr') {
-      header('Location: admin_hr.php');
-      exit;
+        header('Location: admin_hr.php');
+        exit;
     } elseif ($_SESSION['sebagai'] == 'ga') {
-      header("Location: ga.php");
-      exit;
+        header("Location: ga.php");
+        exit;
     } elseif ($_SESSION['sebagai'] == 'hr') {
-      header("Location: hr.php");
-      exit;
+        header("Location: hr.php");
+        exit;
     }
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,9 +80,7 @@ if (isset($_SESSION['sebagai'])) {
 
     <!-- Custom fonts for this template-->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -92,201 +90,196 @@ if (isset($_SESSION['sebagai'])) {
 
 <body id="page-top">
 
-<!-- Page Wrapper -->
-<div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-            <div>
-            <img src="../assets/img/madep.png" alt="logo" width="45px">
-            </div>
-            
-        </a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                <div>
+                    <img src="../assets/img/madep.png" alt="logo" width="45px">
+                </div>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="index.php">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-    
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
             </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Kelola Data</h6>
-                    <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
-                    <a class="collapse-item active" href="../akun/index.php">Kelola Data akun</a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Booking</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Booking</h6>
+                        <a class="collapse-item" href="../karyawan/booking/mobil.php">Mobil</a>
+                        <a class="collapse-item" href="../karyawan/booking/non_mobil.php">Non Mobil</a>
+                    </div>
                 </div>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="../../logout.php">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray"></i>
+                    <span>Logout</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-        </li>
-
-        
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
 
 
-        <li class="nav-item">
-            <a class="nav-link" href="../../logout.php">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray"></i>
-                <span>Logout</span></a>
-        </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        </ul>
+        <!-- End of Sidebar -->
 
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-    
+            <!-- Main Content -->
+            <div id="content">
 
-    </ul>
-    <!-- End of Sidebar -->
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-        <!-- Main Content -->
-        <div id="content">
+                        <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['nama_lengkap']; ?></span>
-                            <img class="img-profile rounded-circle"
-                                src="../assets/img/undraw_profile.svg">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a href="../../logout.php" class="dropdown-item" >
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['nama_lengkap']; ?></span>
+                                <img class="img-profile rounded-circle" src="../assets/img/undraw_profile.svg">
                             </a>
-                        </div>
-                    </li>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a href="../../logout.php" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
 
-                </ul>
+                    </ul>
 
-            </nav>
-            <!-- End of Topbar -->     
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="card shadow">
-                <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Detail Mobil - <?php echo $data['nama_mobil']; ?></h6>
-                </div>
-                <div class="card-body">
+                    <!-- Page Heading -->
                     <div class="row">
-                        <div class="col-md-6">
-                        <img src="../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <td>Nama</td>
-                                    <td>:</td>
-                                    <td><b><?php echo $data['nama_mobil']; ?></b></td>
-                                </tr>
-                                <tr>
-                                    <td>Nomer Polisi</td>
-                                    <td>:</td>
-                                    <td><b><?php echo $data['no_polisi']; ?></b></td>
-                                </tr>
-                                <tr>
-                                    <td>Jumlah Kursi</td>
-                                    <td>:</td>
-                                    <td><b><?php echo $data['jumlah_kursi']; ?> Kursi</b></td>
-                                </tr>
-                                <tr>
-                                    <td>Tahun Beli</td>
-                                    <td>:</td>
-                                    <td><b>Tahun <?php echo $data['tahun_beli']; ?></b></td>
-                                </tr>
-                            </table>	
-                        </div>				
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                        <form method="post">
-                        <button title="booking" class="btn btn-primary" name="btn-pesan"><i class="fas fa-receipt"></i></button>&nbsp;
-                        <a title="kembali" class="btn btn-secondary" href="index.php"><i class="fas fa-reply"></i></a>                               
-                        </form>
+                        <div class="col-sm-8">
+                            <div class="card shadow">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Detail Mobil - <?php echo $data['nama_mobil']; ?></h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img src="../assets/foto/<?php echo $data['gambar']; ?>" class="img-thumbnail mb-4">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table table-borderless">
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td>:</td>
+                                                    <td><b><?php echo $data['nama_mobil']; ?></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nomer Polisi</td>
+                                                    <td>:</td>
+                                                    <td><b><?php echo $data['no_polisi']; ?></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jumlah Kursi</td>
+                                                    <td>:</td>
+                                                    <td><b><?php echo $data['jumlah_kursi']; ?> Kursi</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tahun Beli</td>
+                                                    <td>:</td>
+                                                    <td><b>Tahun <?php echo $data['tahun_beli']; ?></b></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <form method="post">
+                                                <button title="booking" class="btn btn-primary" name="btn-pesan"><i class="fas fa-receipt"></i></button>&nbsp;
+                                                <a title="kembali" class="btn btn-secondary" href="index.php"><i class="fas fa-reply"></i></a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- /.container-fluid -->
+
             </div>
+            <!-- End of Main Content -->
+
+
         </div>
-    </div>
-    </div>
-    <!-- /.container-fluid -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Main Content -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../assets/vendor/jquery/jquery.min.js"></script>
+        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Core plugin JavaScript-->
+        <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Custom scripts for all pages-->
+        <script src="../assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Bootstrap core JavaScript-->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="../assets/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="../assets/js/demo/chart-area-demo.js"></script>
+        <script src="../assets/js/demo/chart-pie-demo.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../assets/js/sb-admin-2.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../assets/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../assets/js/demo/chart-area-demo.js"></script>
-    <script src="../assets/js/demo/chart-pie-demo.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../assets/js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="../assets/js/demo/datatables-demo.js"></script>
 
 
 </body>

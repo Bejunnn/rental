@@ -1,44 +1,26 @@
 <?php
 include('../../koneksi.php');
-
-if (isset($_GET['id_permintaan_opt'])) {
-    // ambil nilai id dari url dan disimpan dalam variabel $id
-    $id_permintaan_opt = ($_GET["id_permintaan_opt"]);
-  
-    // menampilkan data dari database yang mempunyai id=$id
-    $query = "SELECT * FROM permintaan_opt WHERE id_permintaan_opt='$id_permintaan_opt'";
-    $result = mysqli_query($koneksi, $query);
-    // jika data gagal diambil maka akan tampil error berikut
-    if (!$result) {
-      die("Query Error: " . mysqli_errno($koneksi) .
-        " - " . mysqli_error($koneksi));
-    }
-    // mengambil data dari database
-    $data = mysqli_fetch_assoc($result);
-    // apabila data tidak ada pada database maka akan dijalankan perintah ini
-    if (!count($data)) {
-      echo "<script>alert('Data tidak ditemukan pada database');window.location='index.php';</script>";
-    }
-  } else {
-    // apabila tidak ada data GET id pada akan di redirect ke index.php
-    echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
-  }
+$result = mysqli_query($koneksi, "SELECT * FROM permintaan WHERE status_perjalanan='0'");
+$rows = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+}
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-    header("Location: ../../index.php");
+  header("Location: ../../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'karyawan') {
-        header('Location: karyawan.php');
-        exit;
-    } elseif ($_SESSION['sebagai'] == 'ga') {
-        header("Location: ga.php");
-        exit;
-    } elseif ($_SESSION['sebagai'] == 'hr') {
-        header("Location: hr.php");
-        exit;
-    }
+  if ($_SESSION['sebagai'] == 'admin_hr') {
+    header('Location: admin_hr.php');
+    exit;
+  } elseif ($_SESSION['sebagai'] == 'karyawan') {
+    header("Location: karyawan.php");
+    exit;
+  } elseif ($_SESSION['sebagai'] == 'hr') {
+    header("Location: hr.php");
+    exit;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -84,7 +66,7 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="../index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -95,19 +77,30 @@ if (isset($_SESSION['sebagai'])) {
 
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking</span>
+                </a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link" href="../mobil/index.php">
+                <a class="nav-link" href="non_mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking Non Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="data-mobil.php" >
                     <i class="fas fa-fw fa-car"></i>
-                    <span>Data Mobil</span>
+                    <span>Data Permintaan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../akun/index.php">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Mobil</span>
+                <a class="nav-link" href="data-non_mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Non Mobil</span>
                 </a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -180,41 +173,40 @@ if (isset($_SESSION['sebagai'])) {
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Data Permintaan Mobil</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Daftar mobil</h6>
                             </div>
                             <div class="card-body">
-                            <a href="data-mobil.php" style="margin:10px;" class="btn btn-success"><i class='fa fa-backward'>Kembali</i></a>
+
                                 <table class="table table-bordered" id="dataTable" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Tanggal Perminjaman</th>
                                             <th>Nama</th>
                                             <th>Kota Tujuan</th>
-                                            <th>kendaraan</th>
-                                            <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <?php
-                                    $no = 1
+                                    $no = '1';
+                                    if (mysqli_num_rows($result)) {
+                                    foreach ($rows as $data) {
                                     ?>
                                         <tbody>
                                             <tr>
 
                                                 <td><?= $no++ ?></td>
+                                                <td><?= $data['tanggal_pinjam']; ?></td>
                                                 <td><?= $data['nama_pemesan']; ?></td>
                                                 <td><?= $data['kota_tujuan']; ?></td>
-                                                <td><?= $data['kendaraan']; ?></td>
-                                                <td> <?php
-                                                        if ($data['status_perjalanan'] == 0) {
-                                                            echo '<span class=text-warning>Belum Disetujui</span>';
-                                                        } elseif ($data['status_perjalanan'] == 1) {
-                                                            echo '<span class=text-primary>Telah Disetujui</span>';
-                                                        } else {
-                                                            echo '<span class=text-danger>Tidak Disetujui</span>';
-                                                        }
-                                                        ?>
+                                                <td>
+                                                    <a title="detail" class="btn btn-info" href="detail-mobil.php?id_permintaan=<?php echo $data['id_permintaan']; ?>"><i class="fas fa-eye"></i></a>
                                                 </td>
                                             </tr>
+                                        <?php
+                                    }
+                                        ?>
+                                        <?php $no++; }else {echo "<tr><td colspan=5>Tidak ada permintaan.</td></tr>";} ?>
                                         </tbody>
                                 </table>
                             </div>
@@ -238,21 +230,28 @@ if (isset($_SESSION['sebagai'])) {
         </a>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="../assets/vendor/jquery/jquery.min.js"></script>
-        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+        <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="../assets/js/sb-admin-2.min.js"></script>
+        <script src="../../assets/js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <script src="../assets/vendor/chart.js/Chart.min.js"></script>
+        <script src="../../assets/vendor/chart.js/Chart.min.js"></script>
 
         <!-- Page level custom scripts -->
-        <script src="../assets/js/demo/chart-area-demo.js"></script>
-        <script src="../assets/js/demo/chart-pie-demo.js"></script>
+        <script src="../../assets/js/demo/chart-area-demo.js"></script>
+        <script src="../../assets/js/demo/chart-pie-demo.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="../../assets/js/demo/datatables-demo.js"></script>
 
 </body>
 

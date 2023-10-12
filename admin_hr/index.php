@@ -83,30 +83,6 @@ if (isset($_SESSION['sebagai'])) {
                     <span>Data Akun</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="booking/mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Booking</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="booking/non_mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Booking Non Mobil</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="booking/data-mobil.php" >
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Permintaan Mobil</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="booking/data-non_mobil.php" >
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Permintaan Non Mobil</span>
-                </a>
-            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

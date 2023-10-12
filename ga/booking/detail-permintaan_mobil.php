@@ -23,23 +23,23 @@ if (isset($_GET['id_permintaan'])) {
     // apabila tidak ada data GET id pada akan di redirect ke index.php
     echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
   }
-session_start();
-if (!isset($_SESSION['sebagai'])) {
+  session_start();
+  if (!isset($_SESSION['sebagai'])) {
     header("Location: ../../index.php");
-}
-
-if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'karyawan') {
-        header('Location: karyawan.php');
-        exit;
-    } elseif ($_SESSION['sebagai'] == 'ga') {
-        header("Location: ga.php");
-        exit;
+  }
+  
+  if (isset($_SESSION['sebagai'])) {
+    if ($_SESSION['sebagai'] == 'admin_hr') {
+      header('Location: admin_hr.php');
+      exit;
+    } elseif ($_SESSION['sebagai'] == 'karyawan') {
+      header("Location: karyawan.php");
+      exit;
     } elseif ($_SESSION['sebagai'] == 'hr') {
-        header("Location: hr.php");
-        exit;
+      header("Location: hr.php");
+      exit;
     }
-}
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,18 +96,29 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="../mobil/index.php">
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Mobil</span>
+                <a class="nav-link" href="mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../akun/index.php">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Mobil</span>
+                <a class="nav-link" href="non_mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking Non Mobil</span>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="data-mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="data-non_mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Non Mobil</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

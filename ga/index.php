@@ -74,25 +74,29 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                <a class="nav-link" href="booking/mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Kelola Data</h6>
-                        <a class="collapse-item" href="../siswa/index.php">Kelola Data Siswa</a>
-                        <a class="collapse-item" href="../input/index.php">Kelola Admin/User</a>
-                        <h6 class="collapse-header">Pembayaran</h6>
-                        <a class="collapse-item" href="../transaksi/index.php">Transaksi</a>
-                        <a class="collapse-item " href="../transaksi/tunggakan.php">Tunggakan</a>
-                        <a class="collapse-item" href="../transaksi/laporan.php">Laporan</a>
-                    </div>
-                </div>
             </li>
-
-            
+            <li class="nav-item">
+                <a class="nav-link" href="booking/non_mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking Non Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="booking/data-mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="booking/data-non_mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Non Mobil</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
