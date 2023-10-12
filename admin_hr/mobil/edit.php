@@ -8,7 +8,7 @@ if (isset($_GET['id_mobil'])) {
   $id_mobil = ($_GET["id_mobil"]);
 
   // menampilkan data dari database yang mempunyai id=$id
-  $query = "SELECT * FROM Mobil WHERE id_mobil='$id_mobil'";
+  $query = "SELECT * FROM mobil WHERE id_mobil='$id_mobil'";
   $result = mysqli_query($koneksi, $query);
   // jika data gagal diambil maka akan tampil error berikut
   if (!$result) {

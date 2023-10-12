@@ -93,7 +93,6 @@ if (isset($_SESSION['sebagai'])) {
                     <span>Data Akun</span>
                 </a>
             </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -233,9 +232,9 @@ if (isset($_SESSION['sebagai'])) {
                                     <td>
                                         <?php
                                         if ($data['status'] == 1) {
-                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=0" class="btn btn-danger">inActive</a></p>';
+                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=0" class="btn btn-success">Active</a></p>';
                                         } else {
-                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=1" class="btn btn-success">Active</a></p>';
+                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=1" class="btn btn-danger">inActive</a></p>';
                                         }
                                         ?>
                                     </td>
