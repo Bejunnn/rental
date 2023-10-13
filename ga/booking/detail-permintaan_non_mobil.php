@@ -96,6 +96,12 @@ if (isset($_GET['id_permintaan_opt'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+                <a class="nav-link" href="../mobil/index.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="mobil.php" >
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Data Booking</span>

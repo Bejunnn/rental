@@ -1,28 +1,48 @@
 <?php
-include('../../koneksi.php');
-$result = mysqli_query($koneksi, "SELECT * FROM mobil");
-$rows = [];
-while ($row = mysqli_fetch_assoc($result)) {
-  $rows[] = $row;
-}
+// memanggil file koneksi.php untuk membuat koneksi
+include '../../koneksi.php';
 
+// mengecek apakah di url ada nilai GET id
+if (isset($_GET['id_permintaan_opt'])) {
+  // ambil nilai id dari url dan disimpan dalam variabel $id
+  $id_permintaan_opt = ($_GET["id_permintaan_opt"]);
+
+  // menampilkan data dari database yang mempunyai id=$id
+  $query = "SELECT * FROM permintaan_opt WHERE id_permintaan_opt='$id_permintaan_opt'";
+  $result = mysqli_query($koneksi, $query);
+
+  // jika data gagal diambil maka akan tampil error berikut
+  if (!$result) {
+    die("Query Error: " . mysqli_errno($koneksi) .
+      " - " . mysqli_error($koneksi));
+  }
+  // mengambil data dari database
+  $data = mysqli_fetch_assoc($result);
+  // apabila data tidak ada pada database maka akan dijalankan perintah ini
+  if (!count($data)) {
+    echo "<script>alert('Data tidak ditemukan pada database');window.location='index.php';</script>";
+  }
+} else {
+  // apabila tidak ada data GET id pada akan di redirect ke index.php
+  echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
+}
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
     if ($_SESSION['sebagai'] == 'karyawan') {
-      header('Location: karyawan.php');
-      exit;
+        header('Location: karyawan.php');
+        exit;
     } elseif ($_SESSION['sebagai'] == 'ga') {
-      header("Location: ga.php");
-      exit;
+        header("Location: ga.php");
+        exit;
     } elseif ($_SESSION['sebagai'] == 'hr') {
-      header("Location: hr.php");
-      exit;
+        header("Location: hr.php");
+        exit;
     }
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,16 +101,34 @@ if (isset($_SESSION['sebagai'])) {
     
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-                <a class="nav-link" href="index.php" >
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Mobil</span>
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="../akun/index.php" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Akun</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pengeluaran_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pengeluaran_non_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi opt</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="data-pengeluaran_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="data-pengeluaran_non_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi Non Mobil</span>
                 </a>
             </li>
         <!-- Divider -->
@@ -156,104 +194,64 @@ if (isset($_SESSION['sebagai'])) {
     <div class="container-fluid">
 
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Mobil</h1>
-    </div>
-
-    <!-- Content Row -->
-
     <div class="row">
-
-        <div class="col-sm-4">
-            <div class="card shadow">
-                <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="proses/proses_tambah.php" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="nama_mobil">Nama Mobil</label>
-                            <input type="text" name="nama_mobil" id="nama_mobil" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                        </div>
-                            <div class="form-group">
-                                <label for="no_polisi">No Polisi</label>
-                                <input type="text" name="no_polisi" id="no_polisi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                            </div>
-                            <div class="row">
-                            <div class="form-group col-6">
-                                <label for="jumlah_kursi">Jumlah Kursi</label>
-                                <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="tahun_beli">Tahun Beli</label>
-                                <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control">
-                            </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="gambar">Gambar Mobil</label>
-                                <input type="file" name="gambar" id="gambar" required="required" placeholder="ketik" autocomplete="off" class="form-control-file">
-                            </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-primary" name="tambah"><i class="fa fa-plus"></i> Tambah</button>
-                            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Batal</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div class="col-sm-8">
             <div class="card shadow">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Mobil</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Detail Permintaan - <?php echo $data['nama_pemesan']; ?></h6>
                 </div>
                 <div class="card-body">
-
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Mobil</th>
-                                <th>Kursi</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        $no = '1';
-                        foreach ($rows as $data) { 
-                        ?>
-                        <tbody>            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
                                 <tr>
-                                    
-                                    <td><?= $no++ ?></td>
-                                    <td><?= $data['nama_mobil']; ?></td>
-                                    <td><?= $data['jumlah_kursi']; ?></td>
-                                    <td>
-                                        <?php
-                                        if ($data['status'] == 1) {
-                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=0" class="btn btn-success">Active</a></p>';
-                                        } else {
-                                            echo '<p><a href="active.php?id_mobil=' . $data['id_mobil'] . '&status=1" class="btn btn-danger">inActive</a></p>';
-                                        }
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <a title="edit" class="btn btn-primary" href="edit.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-edit"></i></a>
-                                        <a title="detail" class="btn btn-info" href="detail.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-eye"></i></a>
-                                        <a title="hapus" class="btn btn-danger" href="proses/proses_hapus.php?id_mobil=<?php echo $data['id_mobil']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>&nbsp;
-                                    </td>
+                                    <td>Nama Pemesan</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['nama_pemesan']; ?></b></td>
                                 </tr>
-                                <?php
-                                }
-                                ?>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Kota Tujuan</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['kota_tujuan']; ?></b></td>
+                                </tr>
+                                <tr>
+                                    <td>Kendaraan</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['kendaraan']; ?></b></td>
+                                </tr>
+                                <tr>
+                                    <td>Pengeluaran</td>
+                                    <td>:</td>
+                                    <td><b><?php echo $data['pengeluaran']; ?></b></td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>:</td>
+                                    <td > <?php
+                                        if ($data['status_pengeluaran'] == 0){
+                                            echo '<span class=text-warning>Menunggu Persetujuan</span>';
+                                        } elseif ($data['status_pengeluaran'] == 1) {
+                                            echo '<span class=text-primary>Telah Disetujui</span>';
+                                        } else {
+                                            echo '<span class=text-danger>Tidak Disetujui</span>';
+                                        }
+                                        ?> 
+                                    </td>  
+                                </tr>
+                            </table>	
+                        </div>				
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <a  href="setuju_opt.php?id_permintaan_opt=<?= $data['id_permintaan_opt']; ?>"><span data-placement='top' data-toggle='tooltip' title='Setuju'><button   class="btn btn-success">Setuju</button></span></a>            
+                        <a  href="tidaksetuju_opt.php?id_permintaan_opt=<?=$data['id_permintaan_opt']; ?>"><span data-placement='top' data-toggle='tooltip' title='Tidak Setuju'><button   class="btn btn-danger" >Tidak Setuju</button></span></a>&nbsp;
+                        <a title="kembali" class="btn btn-secondary" href="mobil.php"><i class="fas fa-reply"></i></a>                               
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     </div>
     <!-- /.container-fluid -->
 

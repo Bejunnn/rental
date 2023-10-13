@@ -27,21 +27,21 @@ if (isset($_GET['id_mobil'])) {
 }
 session_start();
 if (!isset($_SESSION['sebagai'])) {
-  header("Location: ../index.php");
+  header("Location: ../../index.php");
 }
 
 if (isset($_SESSION['sebagai'])) {
-    if ($_SESSION['sebagai'] == 'karyawan') {
-      header('Location: karyawan.php');
-      exit;
-    } elseif ($_SESSION['sebagai'] == 'ga') {
-      header("Location: ga.php");
-      exit;
-    } elseif ($_SESSION['sebagai'] == 'hr') {
-      header("Location: hr.php");
-      exit;
-    }
+  if ($_SESSION['sebagai'] == 'admin_hr') {
+    header('Location: admin_hr.php');
+    exit;
+  } elseif ($_SESSION['sebagai'] == 'karyawan') {
+    header("Location: karyawan.php");
+    exit;
+  } elseif ($_SESSION['sebagai'] == 'hr') {
+    header("Location: hr.php");
+    exit;
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,20 +99,35 @@ if (isset($_SESSION['sebagai'])) {
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Kelola Data</h6>
-            <a class="collapse-item active" href="index.php">Kelola Data Mobil</a>
-            <a class="collapse-item active" href="../akun/index.php">Kelola Data akun</a>
-          </div>
-        </div>
-      </li>
-
-
+                <a class="nav-link" href="index.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../booking/mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../booking/non_mobil.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Booking Non Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../booking/data-mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../booking/data-non_mobil.php" >
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Data Permintaan Non Mobil</span>
+                </a>
+            </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

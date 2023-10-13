@@ -101,21 +101,36 @@ if (isset($_SESSION['sebagai'])) {
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Kelola Data</h6>
-                    <a class="collapse-item active" href="../mobil/index.php">Kelola Data Mobil</a>
-                    <a class="collapse-item active" href="index.php">Kelola Data Akun</a>
-                </div>
-            </div>
-        </li>
-
+                <a class="nav-link" href="index.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akun</span>
+                </a>
+            </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/pengeluaran_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/pengeluaran_non_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi opt</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/data-pengeluaran_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/data-pengeluaran_non_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi Non Mobil</span>
+                </a>
+            </li>
         
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

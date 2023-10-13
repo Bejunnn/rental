@@ -79,16 +79,35 @@ if (isset($_SESSION['sebagai'])) {
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="../mobil/index.php" >
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Mobil</span>
-                </a>
-            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="index.php" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Akun</span>
+                </a>
+            </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/pengeluaran_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/pengeluaran_non_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi opt</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../akomodasi/data-pengeluaran_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi Mobil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="data-pengeluaran_non_mobil.php" >
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Akomodasi Non Mobil</span>
                 </a>
             </li>
             <!-- Divider -->
