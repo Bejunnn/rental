@@ -208,7 +208,7 @@ if (isset($_GET['id_permintaan'])) {
                                             <th>Tanggal Perminjaman</th>
                                             <th>Tanggal Pengembalian</th>
                                             <th>Nama</th>
-                                            <th>Kota Tujuan</th>
+                                            <th>Rincian Tempat Tujuan</th>
                                             <th>Nama Mobil</th>
                                             <th>Status</th>
                                         </tr>

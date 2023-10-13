@@ -210,7 +210,7 @@ if (isset($_SESSION['sebagai'])) {
                                     <td><b><?php echo $data['nama_pemesan']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Kota Tujuan</td>
+                                    <td>Rincian Tempat Tujuan</td>
                                     <td>:</td>
                                     <td><b><?php echo $data['kota_tujuan']; ?></b></td>
                                 </tr>

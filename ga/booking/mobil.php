@@ -189,7 +189,7 @@ if (isset($_SESSION['sebagai'])) {
                                             <th>No</th>
                                             <th>Tanggal Perminjaman</th>
                                             <th>Nama</th>
-                                            <th>Kota Tujuan</th>
+                                            <th>Rincian Tempat Tujuan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>

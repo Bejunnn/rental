@@ -178,7 +178,7 @@ if (isset($_SESSION['sebagai'])) {
                                                 <input type="text" value="<?= $_SESSION['nama_lengkap']; ?>" name="nama_pemesan" id="nama_pemesan" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label for="kota_tujuan">Kota Tujuan</label>
+                                                <label for="kota_tujuan">Rincian Tempat Tujuan</label>
                                                 <input type="text" name="kota_tujuan" id="kota_tujuan" required="required" placeholder="ketik" autocomplete="off" class="form-control">
                                             </div>
                                             <div class="form-group">

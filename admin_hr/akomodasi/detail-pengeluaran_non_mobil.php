@@ -206,7 +206,7 @@ if (isset($_GET['id_permintaan_opt'])) {
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>Kota Tujuan</th>
+                                            <th>Rincian Tempat Tujuan</th>
                                             <th>Kendaraan</th>
                                             <th>pengeluaran</th>
                                             <th>Status</th>
