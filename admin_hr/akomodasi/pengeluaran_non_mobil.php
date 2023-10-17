@@ -85,25 +85,25 @@ if (isset($_SESSION['sebagai'])) {
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="pengeluaran_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Akomodasi</span>
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Akomodasi Mobil</span>
                 </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Akomodasi opt</span>
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Akomodasi Non Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="data-pengeluaran_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-receipt"></i>
                     <span>Data Akomodasi Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="data-pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-receipt"></i>
                     <span>Data Akomodasi Non Mobil</span>
                 </a>
             </li>
