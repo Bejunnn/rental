@@ -14,7 +14,7 @@ if (isset($_GET['id_mobil'])) {
         if (mysqli_num_rows($result) === 1) {
             $rows = mysqli_fetch_assoc($result);
             if ($rows['status'] == '1') {
-                return header("Location: booking/mobil.php");
+                return header("Location: booking/mobil.php?id_mobil=$id_mobil");
 
                 if (isset($_SESSION['nama_mobil'])) {
                     header("Location: detail.php");

@@ -1,11 +1,30 @@
 <?php
-include('../../koneksi.php');
-$result = mysqli_query($koneksi, "SELECT * FROM mobil");
-$rows = [];
-while ($row = mysqli_fetch_assoc($result)) {
-    $rows[] = $row;
-}
+// memanggil file koneksi.php untuk membuat koneksi
+include '../../koneksi.php';
 
+// mengecek apakah di url ada nilai GET id
+if (isset($_GET['id_mobil'])) {
+  // ambil nilai id dari url dan disimpan dalam variabel $id
+  $id_mobil = ($_GET["id_mobil"]);
+
+  // menampilkan data dari database yang mempunyai id=$id
+  $query = "SELECT * FROM mobil WHERE id_mobil='$id_mobil'";
+  $result = mysqli_query($koneksi, $query);
+  // jika data gagal diambil maka akan tampil error berikut
+  if (!$result) {
+    die("Query Error: " . mysqli_errno($koneksi) .
+      " - " . mysqli_error($koneksi));
+  }
+  // mengambil data dari database
+  $data = mysqli_fetch_assoc($result);
+  // apabila data tidak ada pada database maka akan dijalankan perintah ini
+  if (!count($data)) {
+    echo "<script>alert('Data tidak ditemukan pada database');window.location='index.php';</script>";
+  }
+} else {
+  // apabila tidak ada data GET id pada akan di redirect ke index.php
+  echo "<script>alert('Masukkan data id.');window.location='index.php';</script>";
+}
 session_start();
 if (!isset($_SESSION['sebagai'])) {
     header("Location: ../index.php");
@@ -171,24 +190,10 @@ if (isset($_SESSION['sebagai'])) {
                                 <div class="card-body">
                                 <form method="POST" action="../booking/proses/proses_tambah.php" enctype="multipart/form-data">
                                         <div class="form-group">
-                                        <div class="form-group">
-                                                <label for="id_mobil">Id Mobil</label>
-                                                <input type="text" name="id_mobil" id="id_mobil" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
-                                            </div>
+                                            <input name="id_mobil" id="id_mobil" value="<?php echo $data['id_mobil']; ?>" hidden />
                                             <div class="form-group">
-                                                <label for="nama_mobil">Nama Mobil</label>
-                                                <select name="nama_mobil" id="nama_mobil" onchange="detail()" class="form-control">
-                                                    <option value="">Pilih Nama Mobil</option>
-                                                    <?php
-                                                    include "koneksi.php";
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM mobil");
-                                                    while ($data = mysqli_fetch_array($query)) {
-                                                    ?>
-                                                        <option value="<?php echo $data['nama_mobil']; ?>"><?php echo $data['nama_mobil']; ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <label for="nama_pemesan">Nama Mobil</label>
+                                                <input type="text" value="<?= $data['nama_mobil']; ?>" name="nama_mobil" id="nama_mobil" class="form-control" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label for="nama_pemesan">Nama Pemesan</label>
@@ -205,18 +210,18 @@ if (isset($_SESSION['sebagai'])) {
                                             <div class="row">
                                                 <div class="form-group col-6">
                                                     <label for="no_polisi">No Polisi</label>
-                                                    <input type="text" name="no_polisi" id="no_polisi" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
+                                                    <input type="text" value="<?= $data['no_polisi']; ?>" name="no_polisi" id="no_polisi" class="form-control" readonly>
                                                 </div>
                                                 
                                                 <div class="form-group col-6">
                                                     <label for="jumlah_kursi">Jumlah Kursi</label>
-                                                    <input type="number" name="jumlah_kursi" id="jumlah_kursi" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
+                                                    <input type="number" value="<?= $data['jumlah_kursi']; ?>" name="jumlah_kursi" id="jumlah_kursi" class="form-control" readonly>
                                                 </div>
                                             </div>
                                         </div>
                                             <div class="form-group">
                                                 <label for="tahun_beli">Tahun Beli</label>
-                                                <input type="number" name="tahun_beli" id="tahun_beli" required="required" placeholder="ketik" autocomplete="off" class="form-control" readonly>
+                                                <input type="number" value="<?= $data['tahun_beli']; ?>" name="tahun_beli" id="tahun_beli" class="form-control" readonly>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">

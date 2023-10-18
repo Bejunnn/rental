@@ -26,7 +26,7 @@ if (!empty($nama_mobil)) {
     } else {
         // tampilkan alert dan akan redirect ke halaman index.php
         // silahkan ganti index.php sesuai halaman yang akan dituju
-        echo "<script>alert('Data berhasil ditambah.'); window.location='../../booking/mobil.php';</script>";
+        echo "<script>alert('Data berhasil ditambah.'); window.location='../../index.php';</script>";
     }
 } else {
     // Menampilkan pesan jika 'no_polisi' kosong
