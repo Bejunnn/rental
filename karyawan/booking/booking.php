@@ -1,5 +1,11 @@
 <?php
-include('../koneksi.php');
+include('../../koneksi.php');
+$result = mysqli_query($koneksi, "SELECT * FROM mobil");
+$rows = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+}
+
 session_start();
 if (!isset($_SESSION['sebagai'])) {
   header("Location: ../index.php");
@@ -17,12 +23,6 @@ if (isset($_SESSION['sebagai'])) {
       exit;
     }
   }
-$nama = $_SESSION['nama_lengkap'];
-$result = mysqli_query($koneksi, "SELECT * FROM permintaan WHERE nama_pemesan='$nama'");
-$rows = [];
-while ($row = mysqli_fetch_assoc($result)) {
-    $rows[] = $row;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +38,13 @@ while ($row = mysqli_fetch_assoc($result)) {
     <title>Homepage</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -68,8 +68,8 @@ while ($row = mysqli_fetch_assoc($result)) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -80,8 +80,8 @@ while ($row = mysqli_fetch_assoc($result)) {
         
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="../karyawan/booking/booking.php" >
+            <li class="nav-item active">
+                <a class="nav-link" href="booking.php" >
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Booking</span>
                 </a>
@@ -174,7 +174,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar pesanan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar mobil</h6>
                         </div>
                         <div class="card-body">
 
@@ -183,11 +183,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <tr>
                                         <th>No</th>
                                         <th>Mobil</th>
-                                        <th>Tanggal Peminjaman</th>
-                                        <th>Tanggal Pengembalian</th>
-                                        <th>Rincian Tujuan</th>
-                                        <th>Status Perjalanan</th>
-                                        <th>Status Pengeluaran</th>
+                                        <th>Plat Nomor</th>
+                                        <th>Kursi</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <?php
@@ -199,30 +198,19 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                                             <td><?= $no++ ?></td>
                                             <td><?= $data['nama_mobil']; ?></td>
-                                            <td><?= $data['tanggal_pinjam']; ?></td>
-                                            <td><?= $data['tanggal_kembali']; ?></td>
-                                            <td><?= $data['kota_tujuan']; ?></td>
+                                            <td><?= $data['no_polisi']; ?></td>
+                                            <td><?= $data['jumlah_kursi']; ?></td>
                                             <td>
                                                 <?php
-                                                if ($data['status_perjalanan'] == 0) {
-                                                    echo '<span class=text-warning>Belum Disetujui</span>';
-                                                } elseif ($data['status_perjalanan'] == 1) {
-                                                    echo '<span class=text-primary>Telah Disetujui</span>';
+                                                if ($data['status'] == 1) {
+                                                    echo '<p><a href="" class="btn btn-success">Available</a></p>';
                                                 } else {
-                                                    echo '<span class=text-danger>Tidak Disetujui</span>';
+                                                    echo '<p><a href="" class="btn btn-danger">Not Available</a></p>';
                                                 }
                                                 ?>
                                             </td>
                                             <td>
-                                                <?php
-                                                if ($data['status_pengeluaran'] == 0) {
-                                                    echo '<span class=text-warning>Belum Disetujui</span>';
-                                                } elseif ($data['status_pengeluaran'] == 1) {
-                                                    echo '<span class=text-primary>Telah Disetujui</span>';
-                                                } else {
-                                                    echo '<span class=text-danger>Tidak Disetujui</span>';
-                                                }
-                                                ?>
+                                                <a title="detail" class="btn btn-info" href="../detail.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     <?php

@@ -98,21 +98,12 @@ if (isset($_SESSION['sebagai'])) {
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-receipt"></i>
-                <span>Booking</span>
-            </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Booking</h6>
-                    <a class="collapse-item active" href="mobil.php">Mobil</a>
-                    <a class="collapse-item" href="../booking/non_mobil.php">Non Mobil</a>
-                </div>
-            </div>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="booking.php" >
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Booking</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
