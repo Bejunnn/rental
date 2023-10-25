@@ -50,8 +50,6 @@ if (isset($_SESSION['sebagai'])) {
                         <th>Kota Tujuan</th>
                         <th>Kendaraan</th>
                         <th>Pengeluaran</th>
-                        <th>Status Pengeluaran</th>
-                        <th>Status Perjalanan</th>
                     </tr>
                 </thead>
                 <?php
@@ -65,8 +63,6 @@ if (isset($_SESSION['sebagai'])) {
                             <td><?= $data['kota_tujuan']; ?></td>
                             <td><?= $data['kendaraan']; ?></td>
                             <td><?= $data['pengeluaran']; ?></td>
-                            <td><?= $data['status_pengeluaran']; ?></td>
-                            <td><?= $data['status_perjalanan']; ?></td>
                         </tr>
                     <?php
                 }

@@ -80,13 +80,13 @@ if (isset($_SESSION['sebagai'])) {
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="rekap_mobil.php">
                     <i class="fas fa-fw fa-car"></i>
                     <span>Rekapitulasi Penggunaan Mobil</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="akomodasi.php">
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Rekapitulasi Akomodasi Perjalanan</span>
@@ -166,9 +166,7 @@ if (isset($_SESSION['sebagai'])) {
                                 <th>Nama Pemesan</th>
                                 <th>Kota Tujuan</th>
                                 <th>Kendaraan</th>
-                                <th>Pengeluaran</th>
-                                <th>Status Pengeluaran</th>
-                                <th>Status Perjalanan</th>    
+                                <th>Pengeluaran</th>   
                             </tr>
                         </thead>
                         <?php
@@ -182,8 +180,6 @@ if (isset($_SESSION['sebagai'])) {
                                     <td><?= $data['kota_tujuan']; ?></td>
                                     <td><?= $data['kendaraan']; ?></td>
                                     <td><?= $data['pengeluaran']; ?></td>
-                                    <td><?= $data['status_pengeluaran']; ?></td>
-                                    <td><?= $data['status_perjalanan']; ?></td>
                                   
                                 </tr>
                             <?php

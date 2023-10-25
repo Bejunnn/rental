@@ -53,8 +53,6 @@ if (isset($_SESSION['sebagai'])) {
                                 <th>No Polisi</th>
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Kembali</th>
-                                <th>Status Perjalanan</th>
-                                <th>Status Pengeluaran</th>
                             </tr>
                         </thead>
                         <?php
@@ -72,8 +70,6 @@ if (isset($_SESSION['sebagai'])) {
                                     <td><?= $data['no_polisi']; ?></td>
                                     <td><?= $data['tanggal_pinjam']; ?></td>
                                     <td><?= $data['tanggal_kembali']; ?></td>
-                                    <td><?= $data['status_perjalanan']; ?></td>
-                                    <td><?= $data['status_pengeluaran']; ?></td>
                                 </tr>
                             <?php
                         }
