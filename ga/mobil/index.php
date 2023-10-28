@@ -88,26 +88,26 @@ if (isset($_SESSION['sebagai'])) {
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../booking/mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Booking</span>
+                    <i class="fas fa-fw fa-road"></i>
+                    <span>Persetujuan Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../booking/non_mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Booking Non Mobil</span>
+                    <i class="fas fa-fw fa-road"></i>
+                    <span>Persetujuan Perjalanan Non Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../booking/data-mobil.php" >
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Permintaan Mobil</span>
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Persetujuan Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../booking/data-non_mobil.php" >
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Permintaan Non Mobil</span>
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Persetujuan Perjalanan Non Mobil</span>
                 </a>
             </li>
         <!-- Divider -->

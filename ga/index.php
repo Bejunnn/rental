@@ -48,7 +48,7 @@ if (isset($_SESSION['sebagai'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div>
                     <img src="../assets/img/madep.png" alt="logo" width="45px">
                 </div>
@@ -60,7 +60,7 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="admin.php">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -79,26 +79,26 @@ if (isset($_SESSION['sebagai'])) {
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="booking/mobil.php">
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Booking</span>
+                    <i class="fas fa-fw fa-road"></i>
+                    <span>Persetujuan Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="booking/non_mobil.php">
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Booking Non Mobil</span>
+                    <i class="fas fa-fw fa-road"></i>
+                    <span>Persetujuan Perjalanan Non Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="booking/data-mobil.php">
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Permintaan Mobil</span>
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Persetujuan Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="booking/data-non_mobil.php">
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>Data Permintaan Non Mobil</span>
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Persetujuan Perjalanan Non Mobil</span>
                 </a>
             </li>
             <!-- Divider -->

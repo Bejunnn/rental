@@ -97,7 +97,7 @@ if (isset($_GET['id_permintaan_opt'])) {
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="../akun/index.php" >
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Data Akun</span>
                 </a>
             </li>
@@ -116,13 +116,13 @@ if (isset($_GET['id_permintaan_opt'])) {
             <li class="nav-item">
                 <a class="nav-link" href="data-pengeluaran_mobil.php" >
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Akomodasi Mobil</span>
+                    <span>Data Akomodasi Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="data-pengeluaran_non_mobil.php" >
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Akomodasi Non Mobil</span>
+                    <span>Data Akomodasi Perjalanan Non Mobil</span>
                 </a>
             </li>
             <!-- Divider -->

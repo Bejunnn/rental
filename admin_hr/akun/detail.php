@@ -102,33 +102,33 @@ if (isset($_SESSION['sebagai'])) {
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item active">
                 <a class="nav-link" href="index.php" >
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Data Akun</span>
                 </a>
             </li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../akomodasi/pengeluaran_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Akomodasi</span>
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Persetujuan Akomodasi Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../akomodasi/pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Akomodasi opt</span>
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Persetujuan Akomodasi Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../akomodasi/data-pengeluaran_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Akomodasi Mobil</span>
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Akomodasi Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../akomodasi/data-pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Akomodasi Non Mobil</span>
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Data Akomodasi Perjalanan Non Mobil</span>
                 </a>
             </li>
         
