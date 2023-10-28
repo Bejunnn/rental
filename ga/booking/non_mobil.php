@@ -179,7 +179,7 @@ if (isset($_SESSION['sebagai'])) {
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Daftar mobil</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Permintaan Perjalanan Non Mobil</h6>
                             </div>
                             <div class="card-body">
 

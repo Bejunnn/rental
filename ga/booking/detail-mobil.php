@@ -108,7 +108,7 @@ if (isset($_SESSION['sebagai'])) {
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="booking/mobil.php" >
+                <a class="nav-link" href="mobil.php" >
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Data Booking</span>
                 </a>

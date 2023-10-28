@@ -125,7 +125,7 @@ if (isset($_SESSION['sebagai'])) {
                     <span>Data Akomodasi Mobil</span>
                 </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="data-pengeluaran_non_mobil.php" >
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Data Akomodasi Non Mobil</span>
@@ -245,7 +245,7 @@ if (isset($_SESSION['sebagai'])) {
                         <div class="col">
                         <a  href="setuju_opt.php?id_permintaan_opt=<?= $data['id_permintaan_opt']; ?>"><span data-placement='top' data-toggle='tooltip' title='Setuju'><button   class="btn btn-success">Setuju</button></span></a>            
                         <a  href="tidaksetuju_opt.php?id_permintaan_opt=<?=$data['id_permintaan_opt']; ?>"><span data-placement='top' data-toggle='tooltip' title='Tidak Setuju'><button   class="btn btn-danger" >Tidak Setuju</button></span></a>&nbsp;
-                        <a title="kembali" class="btn btn-secondary" href="mobil.php"><i class="fas fa-reply"></i></a>                               
+                        <a title="kembali" class="btn btn-secondary" href="pengeluaran_non_mobil.php"><i class="fas fa-reply"></i></a>                               
                         </div>
                     </div>
                 </div>
