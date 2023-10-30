@@ -99,7 +99,7 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div>
-                    <img src="../assets/img/madep.png" alt="logo" width="45px">
+                    <img src="../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
 
             </a>

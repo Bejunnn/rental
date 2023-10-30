@@ -56,7 +56,7 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <div>
-                    <img src="../../assets/img/madep.png" alt="logo" width="45px">
+                    <img src="../../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
 
             </a>
@@ -83,29 +83,31 @@ if (isset($_SESSION['sebagai'])) {
                     <span>Data Akun</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pengeluaran_mobil.php" >
-                    <i class="fas fa-fw fa-dollar-sign"></i>
-                    <span>Persetujuan Akomodasi Perjalanan Mobil</span>
-                </a>
-            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="pengeluaran_non_mobil.php" >
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#akomodasi"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-dollar-sign"></i>
-                    <span>Persetujuan Akomodasi Perjalanan Non Mobil</span>
+                    <span>Akomodasi Perjalanan</span>
                 </a>
+                <div id="akomodasi" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="pengeluaran_mobil.php">Mobil</a>
+                        <a class="collapse-item active" href="pengeluaran_non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="data-pengeluaran_mobil.php" >
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#data"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Akomodasi Perjalanan Mobil</span>
+                    <span>Data Akomodasi</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="data-pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Akomodasi Perjalanan Non Mobil</span>
-                </a>
+                <div id="data" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="data-pengeluaran_mobil.php">Mobil</a>
+                        <a class="collapse-item" href="data-pengeluaran_non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

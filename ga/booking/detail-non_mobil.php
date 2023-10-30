@@ -80,7 +80,7 @@ if (isset($_SESSION['sebagai'])) {
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
             <div>
-            <img src="../../assets/img/madep.png" alt="logo" width="45px">
+            <img src="../../assets/img/mitra.png" alt="logo" width="45px">
             </div>
             
         </a>
@@ -107,29 +107,31 @@ if (isset($_SESSION['sebagai'])) {
                     <span>Data Mobil</span>
                 </a>
             </li>
-        <li class="nav-item">
-                <a class="nav-link" href="mobil.php" >
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#booking"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-road"></i>
-                    <span>Persetujuan Perjalanan Mobil</span>
+                    <span>Persetujuan Perjalanan</span>
                 </a>
+                <div id="booking" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="mobil.php">Mobil</a>
+                        <a class="collapse-item" href="non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="non_mobil.php" >
-                    <i class="fas fa-fw fa-road"></i>
-                    <span>Persetujuan Perjalanan Non Mobil</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="data-mobil.php" >
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#data"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Persetujuan Perjalanan Mobil</span>
+                    <span>Data Perjalanan</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="data-non_mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Persetujuan Perjalanan Non Mobil</span>
-                </a>
+                <div id="data" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="data-mobil.php">Mobil</a>
+                        <a class="collapse-item" href="data-non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

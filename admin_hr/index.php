@@ -1,4 +1,5 @@
 <?php
+include('../koneksi.php');
 session_start();
 if (!isset($_SESSION['sebagai'])) {
     header("Location: ../index.php");
@@ -39,6 +40,34 @@ if (isset($_SESSION['sebagai'])) {
 
 </head>
 
+<?php
+
+$a = 0;
+$query  = "SELECT count(id) AS lg FROM login WHERE id";
+$sql    = mysqli_query($koneksi, $query);
+if (mysqli_num_rows($sql) > 0) {
+    $data = mysqli_fetch_assoc($sql);
+    $a  = $data['lg'];
+}
+
+$b = 0;
+$query  = "SELECT count(id_permintaan) AS prm FROM permintaan  WHERE id_permintaan";
+$sql    = mysqli_query($koneksi, $query);
+if (mysqli_num_rows($sql) > 0) {
+    $data = mysqli_fetch_assoc($sql);
+    $b  = $data['prm'];
+}
+
+$c = 0;
+$query  = "SELECT count(id_permintaan_opt) AS opt FROM permintaan_opt WHERE id_permintaan_opt";
+$sql    = mysqli_query($koneksi, $query);
+if (mysqli_num_rows($sql) > 0) {
+    $data = mysqli_fetch_assoc($sql);
+    $c  = $data['opt'];
+}
+
+?>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -50,7 +79,7 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <div>
-                    <img src="../assets/img/madep.png" alt="logo" width="45px">
+                    <img src="../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
 
             </a>
@@ -72,34 +101,34 @@ if (isset($_SESSION['sebagai'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="akun/index.php" >
+                <a class="nav-link" href="akun/index.php">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Data Akun</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="akomodasi/pengeluaran_mobil.php" >
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#akomodasi" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-dollar-sign"></i>
-                    <span>Persetujuan Akomodasi Perjalanan Mobil</span>
+                    <span>Akomodasi Perjalanan</span>
                 </a>
+                <div id="akomodasi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="akomodasi/pengeluaran_mobil.php">Mobil</a>
+                        <a class="collapse-item" href="akomodasi/pengeluaran_non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="akomodasi/pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-dollar-sign"></i>
-                    <span>Persetujuan Akomodasi Perjalanan Non Mobil</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="akomodasi/data-pengeluaran_mobil.php" >
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#data" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Akomodasi Perjalanan Mobil</span>
+                    <span>Data Akomodasi</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="akomodasi/data-pengeluaran_non_mobil.php" >
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Akomodasi Perjalanan Non Mobil</span>
-                </a>
+                <div id="data" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="akomodasi/data-pengeluaran_mobil.php">Mobil</a>
+                        <a class="collapse-item" href="akomodasi/data-pengeluaran_non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -177,10 +206,66 @@ if (isset($_SESSION['sebagai'])) {
                             </div>
                             <div class="card-body">
                                 <div>
-                                    Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai Admin HR di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online.
+                                    Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai Admin HR.
                                 </div>
                             </div>
 
+                        </div>
+                        <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Akun</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($a); ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Data Akomodasi Mobil</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($b); ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-fw fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Data Akomodasi Non Mobil</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($c); ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-fw fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
 
                     </div>

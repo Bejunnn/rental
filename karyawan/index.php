@@ -59,7 +59,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <div>
-               <img src="../assets/img/madep.png" alt="logo" width="45px">
+               <img src="../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
                
             </a>
@@ -174,7 +174,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar pesanan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Pesanan Saya</h6>
                         </div>
                         <div class="card-body">
 

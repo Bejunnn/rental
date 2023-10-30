@@ -59,7 +59,7 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <div>
-               <img src="../assets/img/madep.png" alt="logo" width="45px">
+               <img src="../../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
                
             </a>
@@ -159,18 +159,6 @@ if (isset($_SESSION['sebagai'])) {
                 <div class="container-fluid">
 
                     <!-- DataTales Example -->
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Dashboard</h6>
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai Karyawan.
-                            </div>
-                        </div>
-
-                    </div>
                     
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

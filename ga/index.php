@@ -1,4 +1,5 @@
 <?php
+include('../koneksi.php');
 session_start();
 if (!isset($_SESSION['sebagai'])) {
     header("Location: ../index.php");
@@ -39,6 +40,34 @@ if (isset($_SESSION['sebagai'])) {
 
 </head>
 
+<?php
+
+$a = 0;
+$query  = "SELECT count(id_mobil) AS lg FROM mobil WHERE id_mobil";
+$sql    = mysqli_query($koneksi, $query);
+if (mysqli_num_rows($sql) > 0) {
+    $data = mysqli_fetch_assoc($sql);
+    $a  = $data['lg'];
+}
+
+$b = 0;
+$query  = "SELECT count(id_permintaan) AS prm FROM permintaan  WHERE id_permintaan";
+$sql    = mysqli_query($koneksi, $query);
+if (mysqli_num_rows($sql) > 0) {
+    $data = mysqli_fetch_assoc($sql);
+    $b  = $data['prm'];
+}
+
+$c = 0;
+$query  = "SELECT count(id_permintaan_opt) AS opt FROM permintaan_opt WHERE id_permintaan_opt";
+$sql    = mysqli_query($koneksi, $query);
+if (mysqli_num_rows($sql) > 0) {
+    $data = mysqli_fetch_assoc($sql);
+    $c  = $data['opt'];
+}
+
+?>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -50,7 +79,7 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div>
-                    <img src="../assets/img/madep.png" alt="logo" width="45px">
+                    <img src="../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
 
             </a>
@@ -78,28 +107,28 @@ if (isset($_SESSION['sebagai'])) {
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="booking/mobil.php">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#booking" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-road"></i>
-                    <span>Persetujuan Perjalanan Mobil</span>
+                    <span>Persetujuan Perjalanan</span>
                 </a>
+                <div id="booking" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="booking/mobil.php">Mobil</a>
+                        <a class="collapse-item" href="booking/non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="booking/non_mobil.php">
-                    <i class="fas fa-fw fa-road"></i>
-                    <span>Persetujuan Perjalanan Non Mobil</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="booking/data-mobil.php">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#data" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Persetujuan Perjalanan Mobil</span>
+                    <span>Data Perjalanan</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="booking/data-non_mobil.php">
-                    <i class="fas fa-fw fa-receipt"></i>
-                    <span>Data Persetujuan Perjalanan Non Mobil</span>
-                </a>
+                <div id="data" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="booking/data-mobil.php">Mobil</a>
+                        <a class="collapse-item" href="booking/data-non_mobil.php">Non Mobil</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -177,12 +206,67 @@ if (isset($_SESSION['sebagai'])) {
                             </div>
                             <div class="card-body">
                                 <div>
-                                    Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai <?= $_SESSION['sebagai']; ?> di sistem informasi Penerimaan Peserta Didik Baru (PPDB) Online.
+                                    Selamat datang <?= $_SESSION['nama_lengkap']; ?>, anda login sebagai <?= $_SESSION['sebagai']; ?>
                                 </div>
                             </div>
 
                         </div>
+                        <div class="row">
 
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Data Mobil</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($a); ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-car fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Data Perjalanan Mobil</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($b); ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-fw fa-road fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Data Perjalanan Non Mobil</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($c); ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-fw fa-road fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
