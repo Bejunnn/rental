@@ -199,7 +199,7 @@ if (isset($_GET['id_permintaan_opt'])) {
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Data Permintaan Mobil</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Data Permintaan Non Mobil</h6>
                             </div>
                             <div class="card-body">
                             <a href="data-pengeluaran_non_mobil.php" style="margin:10px;" class="btn btn-success"><i class='fa fa-backward'>Kembali</i></a>

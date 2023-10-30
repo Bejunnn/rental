@@ -107,26 +107,26 @@ if (isset($_SESSION['sebagai'])) {
                     <span>Data Mobil</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#booking"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-road"></i>
                     <span>Persetujuan Perjalanan</span>
                 </a>
-                <div id="booking" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="booking" class="collapse  show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="mobil.php">Mobil</a>
                         <a class="collapse-item" href="non_mobil.php">Non Mobil</a>
                     </div>
                 </div>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#data"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-receipt"></i>
                     <span>Data Perjalanan</span>
                 </a>
-                <div id="data" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="data" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="data-mobil.php">Mobil</a>
                         <a class="collapse-item" href="data-non_mobil.php">Non Mobil</a>
