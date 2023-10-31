@@ -59,7 +59,7 @@ if (isset($_SESSION['sebagai'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div>
-                    <img src="../../assets/img/madep.png" alt="logo" width="45px">
+                    <img src="../../assets/img/mitra.png" alt="logo" width="45px">
                 </div>
 
             </a>
@@ -83,15 +83,15 @@ if (isset($_SESSION['sebagai'])) {
             <li class="nav-item active">
                 <a class="nav-link" href="rekap_mobil.php">
                     <i class="fas fa-fw fa-car"></i>
-                    <span>Rekapitulasi Penggunaan Mobil</span>
+                    <span>Rekapitulasi Akomodasi dan Perjalanan Mobil</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="akomodasi.php">
                     <i class="fas fa-fw fa-receipt"></i>
-                    <span>Rekapitulasi Akomodasi Perjalanan</span>
+                    <span>Rekapitulasi Akomodasi dan Perjalanan Non Mobil</span>
                 </a>
-
+            </li>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
