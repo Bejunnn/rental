@@ -71,7 +71,7 @@ CREATE TABLE `mobil` (
 -- Dumping data untuk tabel `mobil`
 --
 
-INSERT INTO `mobil` (`id`, `nama_mobil`, `no_polisi`, `jumlah_kursi`, `tahun_beli`, `gambar`, `status`) VALUES
+INSERT INTO `mobil` (`id_mobil`, `nama_mobil`, `no_polisi`, `jumlah_kursi`, `tahun_beli`, `gambar`, `status`) VALUES
 (2, 'suzki', 'b 4386 hdf', 6, 2018, '576-Gambar WhatsApp 2023-09-11 pukul 08.55.29.jpg', 0),
 (3, 'kijang', 'b 4863 jds', 4, 2010, '675-495521.jpg', 1),
 (4, 'r3', 'b 635 dg', 5, 2009, '16-WIN_20220824_02_29_16_Pro.jpg', 0);
