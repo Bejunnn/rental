@@ -198,7 +198,7 @@ if (isset($_SESSION['sebagai'])) {
                                                 ?>
                                             </td>
                                             <td>
-                                                <a title="detail" class="btn btn-info" href="../detail.php?id_mobil=<?php echo $data['id_mobil']; ?>"><i class="fas fa-eye"></i></a>
+                                                <a title="detail" class="btn btn-info" href="../detail.php?id=<?php echo $data['id']; ?>"><i class="fas fa-eye"></i></a>
                                             </td>
                                         </tr>
                                     <?php
